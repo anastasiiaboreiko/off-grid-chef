@@ -7,14 +7,14 @@
 }
 
 .notification {
-  color: var.$main-accent-color;
+  color: var.$primary-accent-color;
 }
 
 .reloadButton {
   height: 40px;
   width: 100px;
   border-radius: 8px;
-  background-color: var.$main-accent-color;
+  background-color: var.$primary-accent-color;
   color: var.$background-color;
   border: 0;
 }

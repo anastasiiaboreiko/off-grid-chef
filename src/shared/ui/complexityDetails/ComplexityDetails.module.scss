@@ -1,32 +1,49 @@
 @use '../../styles/var.scss';
+@use '../../styles/mixins.scss';
 
 .complexity {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  height: 24px;
   width: 68px;
-  background-color: var.$main-accent-color;
+  background-color: var.$white-background-color;
   border-radius: var.$border-radius;
+  border: 1px solid #FEEFE6;
+  gap: 4px;
+
+  @include mixins.on-desktop {
+    height: 30px;
+  }
 
 
   &__icon {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
 
-    mask-image: url('/src/img/icons/fire.svg');
+    mask-image: url('/src/img/icons/fire-light.svg');
     mask-size: cover;
 
-    background-color: var.$background-color;
+    background-color: var.$primary-accent-color;
+
+    @include mixins.on-desktop {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   &__icon_active {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
 
-    mask-image: url('/src/img/icons/fire-full.svg');
+    mask-image: url('/src/img/icons/fire-filled.svg');
     mask-size: cover;
 
-    background-color: var.$background-color;
+    background-color: var.$primary-accent-color;
+
+    @include mixins.on-desktop {
+      width: 16px;
+      height: 16px;
+    }
   }
 }

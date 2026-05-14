@@ -1,10 +1,19 @@
 @use '../../../styles/var.scss';
+@use '../../../styles/mixins.scss';
+
+.filter {
+  flex: 1
+}
 
 .title {
   padding-bottom: 8px;
-  font-size: 20px;
+  color: var.$secondary-text-color;
 }
 
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
 
 .select {
   position: relative;
@@ -15,48 +24,80 @@
   display: flex;
   box-sizing: border-box;
   align-items: center;
-  height: 56px;
-  width: 205px;
-  background-color: var.$main-dark-color;
-  border-radius: 8px;
+  height: 32px;
+  width: 100%;
+  background-color: var.$white-background-color;
+  border-radius: var.$border-radius;
   padding-left: 16px;
+  box-shadow: var.$box-shadow;
+
+  @include mixins.on-tablet {
+    height: 40px;
+  }
+
+  @include mixins.on-desktop {
+    height: 56px;
+  }
 }
 
 .value {
-  font-size: 16px;
-  color: var.$background-color;
+  color: var.$secondary-text-color;
 }
 
 .arrow {
   position: absolute;
   right: 16px;
+  width: 16px;
   top: 50%;
   transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
   pointer-events: none;
   transition: transform 0.2s;
+
+  @include mixins.on-desktop {
+    width: 24px;
+  }
 }
 
 .arrowOpen {
   position: absolute;
   right: 12px;
+  width: 16px;
 
   transform: rotate(180deg);
+
+  @include mixins.on-desktop {
+    width: 24px;
+  }
 }
 
 .dropdown {
-  width: 150px;
+  width: 100%;
   position: absolute;
-  background-color: var.$background-color;
-  border: 1px solid var.$border-color;
+  background-color: var.$white-background-color;
   border-radius: var.$border-radius;
   list-style: none;
-  padding-block: 8px;
+  margin-top: 4px;
   z-index: 1;
+  box-shadow: var.$box-shadow;
 }
 
 .listItem {
-  padding-block: 5px;
   padding-left: 16px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  color: var.$secondary-text-color;
+
+  @include mixins.on-tablet {
+    height: 40px;
+  }
+
+  @include mixins.on-desktop {
+    height: 56px;
+  }
+
+
+  &:hover {
+    background-color: var.$background-color;
+  }
 }

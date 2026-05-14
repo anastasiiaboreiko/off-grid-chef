@@ -1,6 +1,21 @@
+@use '../../styles/mixins.scss';
+@use '../../styles/var.scss';
+
 .recipeList {
-  padding-block: 40px;
+  // padding-block: 40px;
   display: grid;
-  grid-template-columns: repeat(3, 324px);
-  gap: 32px;
+  gap: 16px;
+
+  @include mixins.on-tablet {
+    display: grid;
+    grid-template-columns: repeat(3, 245px);
+    gap: 16px;
+  }
+
+  @include mixins.on-desktop {
+    display: grid;
+    grid-template-columns: repeat(3, 324px);
+    gap: 32px;
+  }
+  
 }

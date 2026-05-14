@@ -7,16 +7,23 @@ type Props = {
 };
 
 export const PowerDetails: React.FC<Props> = ({ recipe }) => {
+  const powerStatus = recipe.category;
+
+  console.log('powerStatus: ', powerStatus);
+  
   return (
     <div className={styles.power}>
       <span 
-        className={styles.power__icon} 
+        className={powerStatus === 'no_light' 
+          ? styles.power__iconNoLight
+          : styles.power__iconLight
+        } 
         aria-hidden="true"
       />
-      <p className={styles.power__title}>
-        {recipe.category === 'no_light'
-          ? <p>Without power</p>
-          : <p>With power</p>
+      <p className={`main-text ${styles.power__title}`}>
+        {powerStatus === 'no_light'
+          ? 'Without power'
+          : 'With power'
       }
       </p>
     </div>

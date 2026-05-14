@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import type { Recipe } from "../../types/Recipe";
 import styles from './RecipeCard.module.scss';
 import { PowerDetails } from "../powerDetails/PowerDetails";
@@ -14,38 +14,31 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
   return (
     <div className={styles.recipeCard}>
 
-      <NavLink 
+      <Link 
         to={`/recipes/${recipe.id}`} 
         className={styles.cardLink}
       >
         <div className={styles.pictureBlock}>
           <img
-            className={styles.picture}
+            className={styles.pictureBlock__picture}
             src={recipe.image_url ?? '/placeholder.png'}
             alt={recipe.title}
           />
 
-          <div className={styles.specs}>
+          <div className={styles.pictureBlock__specs}>
             <TimeDetails recipe={recipe}/>
-            {/* <div className={styles.time}>
-              <span 
-                className={styles.time__icon} 
-                aria-hidden="true"
-              />
-              <p className={styles.time__text}>{recipe.cooking_time}m</p>
-            </div> */}
-
             <FavoriteButton recipeId={recipe.id} />
-        
           </div>
         
         </div>
-        <h2 className={styles.recipeTitle}>{recipe.title}</h2>
-      </NavLink>
+        <div className={styles.textBlock}>
+          <h4 className={styles.textBlock__title}>{recipe.title}</h4>
+          <p className={`main-text ${styles.textBlock__description}`}>{`${recipe.description.split('.')[0]}.`}</p>
+        </div>
 
-      <p className={styles.recipeDescription}>{recipe.description}</p>
+      </Link>
 
-      <div className={styles.recipeDetails}>
+      <div className={styles.detailsBlock}>
         <PowerDetails recipe={recipe} />
         <ComplexityDetails recipe={recipe}/>
       </div>

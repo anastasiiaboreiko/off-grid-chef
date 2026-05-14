@@ -1,13 +1,19 @@
 @use '../../styles/var.scss';
+@use '../../styles/mixins.scss';
 
 .type {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  height: 24px;
   padding-inline: 8px;
 
-  background-color: var.$main-accent-color;
-  color: var.$background-color;
+  background-color: var.$white-background-color;
+  color: var.$primary-accent-color;
   border-radius: var.$border-radius;
+  border: 1px solid #FEEFE6;
+
+  @include mixins.on-desktop {
+    height: 30px;
+  }
 }

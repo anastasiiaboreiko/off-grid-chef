@@ -19,6 +19,6 @@ export async function getRecipes(): Promise<Recipe[]> {
 
   return data.map(recipe => ({
     ...recipe,
-    image: recipe.image ? `${API_URL}${recipe.image}` : '/placeholder.png'
+    image: recipe.image_url || '/placeholder.png'
   }));
 }

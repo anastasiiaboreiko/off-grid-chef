@@ -8,7 +8,7 @@ type Props = {
 
 export const TypeDetails: React.FC<Props> = ({ recipe }) => {
   return (
-    <div className={styles.type}>
+    <div className={`main-text ${styles.type}`}>
       {recipe.type_of_dish.charAt(0).toUpperCase() + recipe.type_of_dish.slice(1)}
     </div>
   );

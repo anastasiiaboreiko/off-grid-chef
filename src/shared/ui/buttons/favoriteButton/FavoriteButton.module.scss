@@ -1,33 +1,48 @@
 @use '../../../styles/var.scss';
+@use '../../../styles/mixins.scss';
 
 .favorite {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: none;
-  background-color: var.$main-accent-color;
+  background-color: var.$white-background-color;
+
+  @include mixins.on-desktop {
+    width: 32px;
+    height: 32px;
+  }
 
   &__icon {
-    width: 14px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
 
-    mask-image: url('/src/img/icons/heart.svg');
+    mask-image: url('/src/img/icons/heart-light.svg');
     mask-size: contain;
 
-    background-color: var.$background-color;
+    background-color: var.$primary-accent-color;
+    @include mixins.on-desktop {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   &__icon_active {
     width: 14px;
-    height: 12px;
+    height: 14px;
 
-    mask-image: url('/src/img/icons/heart-full.svg');
+    mask-image: url('/src/img/icons/heart-filled.svg');
     mask-size: contain;
 
-    background-color: var.$background-color;
+    background-color: var.$primary-accent-color;
+
+    @include mixins.on-desktop {
+      width: 20px;
+      height: 20px;
+    }
   }
 }

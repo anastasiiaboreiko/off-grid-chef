@@ -37,18 +37,18 @@ export const FilterByTime: React.FC<Props> = ({ value, onChange }) => {
 
   return (
     <div className={styles.filter}>
-      <p className={styles.title}>Cooking time</p>
+      <p className={`body-text ${styles.title}`}>Cooking time</p>
       <div className={styles.selectWrapper} ref={selectRef}>
         <div 
            className={styles.select}
            onClick={() => setIsOpen(prev => !prev)}
         >
-          <span className={styles.value}>
+          <span className={`body-text ${styles.value}`}>
             {options.find(option => option.value === value)?.label}
           </span>
 
           <img
-            src="src/img/icons/arrowDown.svg"
+            src="src/img/icons/arrow-down.svg"
             alt="arrow"
             className={isOpen ? styles.arrowOpen : styles.arrow}
           />
@@ -63,7 +63,7 @@ export const FilterByTime: React.FC<Props> = ({ value, onChange }) => {
                   onChange(option.value);
                   setIsOpen(false);
                 }}
-                className={styles.listItem}
+                className={`body-text ${styles.listItem}`}
               >
                 {option.label}
               </li>

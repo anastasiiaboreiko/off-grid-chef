@@ -1,0 +1,57 @@
+@use '../../../styles/var.scss';
+@use '../../../styles/mixins.scss';
+
+.backButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 32px;
+  width: 53px;
+  font-family: inherit;
+  // margin-bottom: 32px;
+  background-color: var.$background-color;
+  border-radius: var.$border-radius;
+  border: 1px solid #FEEFE6;
+
+  @include mixins.on-tablet {
+    height: 40px;
+    width: 73px;
+    margin-bottom: 16px;
+  }
+
+  @include mixins.on-desktop {
+    height: 48px;
+    width: 96px;
+    margin-bottom: 32px;
+  }
+
+  &__hidden {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  &__icon {
+    width: 12px;
+    height: 12px;
+
+    mask-image: url('/src/img/icons/arrowLeft.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+
+    background-color: var.$primary-accent-color;
+
+    @include mixins.on-tablet {
+      width: 16px;
+      height: 16px;
+    }
+
+    @include mixins.on-desktop {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__title {
+    color: var.$primary-accent-color;
+  }
+}

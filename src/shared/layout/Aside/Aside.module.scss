@@ -1,124 +1,343 @@
 @use '../../styles/var.scss';
+@use '../../styles/mixins.scss';
 
 .sidebar {
-  height: 100vh;
-  overflow: auto;
-  width: 320px;
+  // height: 100vh;
+  position: fixed;
+  height: calc(100vh - var.$mobileHeaderHeight - var.$mobileFooterHeight);
+  // overflow: hidden;
+  width: 100%;
+
+  top: var.$mobileHeaderHeight;
+  // top: 0;
+  right: 0;
+  bottom: var.$mobileFooterHeight;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  // z-index: 10;
   display: flex;
   flex-direction: column;
-  padding: 48px;
-  border-radius: var.$border-radius;
-  background-color: var.$main-dark-color;
-}
+ 
+  background-color: var.$background-color;
+
+  @include mixins.on-tablet {
+    position: static;
+    transform: none;
+    height: 100vh;
+    flex-direction: column;
+    width: 64px;
+    padding-block: 40px;
+    padding-inline: 16px;
+    background-color: var.$white-background-color;
+  }
+
+  @include mixins.on-desktop {
+    width: 320px;
+    padding: 40px;
+  }
+
+  &__open {
+    transform: translateX(0);
+
+    @include mixins.on-tablet {
+      width: 180px;
+    }
+
+    @include mixins.on-desktop {
+      width: 320px;
+    }
+  }
 
   &__header {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 16px;
-    padding-bottom: 150px;
+    padding-bottom: 156px;
   }
 
-  &__logoIcon {
-    width: 40px;
-    height: 40px;
-
-    mask-image: url('src/img/icons/salad.svg');
-    mask-size: contain;
-    background-color: var.$background-color;
-  }
-
-  &__logo {
-    font-size: 24px;
-    text-decoration: none;
-    color: var.$main-light-color;
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
   }
 
   &__nav {
-    padding-block: 30px;
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: self-start;
+    @include mixins.on-tablet {
+      padding-block: 30px;
+      justify-content: start;
+    }
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-around;
+    gap: 8px;
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding-top: 8px;
+  }
+
+  &__item {
+    height: 48px;
+  }
+
+  &__activeLink {
+    display: flex;
+    // flex-direction: column;
+ 
+    text-decoration: none;
+    gap: 12px;
+    color: var.$primary-accent-color;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    @include mixins.on-tablet {
+      // flex-direction: row;
+      justify-content: start;
+      gap: 12px;
+    }
+
+    @include mixins.on-desktop {
+      gap: 16px;
+    }
+
+    .sidebar__iconHome {
+      background-color: var.$primary-accent-color;
+      mask-image: url('src/img/icons/home-filled.svg');
+    }
+
+    .sidebar__iconCart {
+      background-color: var.$primary-accent-color;
+      mask-image: url('src/img/icons/cart-filled.svg');
+    }
+
+    .sidebar__iconFavorite {
+      background-color: var.$primary-accent-color;
+      mask-image: url('src/img/icons/heart-filled.svg');
+    }
   }
 
   &__link {
     display: flex;
-    align-items: center;
+    // flex-direction: column;
     text-decoration: none;
-    gap: 16px;
-    color: var.$main-light-color;
+    gap: 12px;
+    color: #ABABAC;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
+
+    @include mixins.on-tablet {
+      // flex-direction: row;
+      justify-content: start;
+      gap: 12px;
+    }
+
+    @include mixins.on-desktop {
+      gap: 16px;
+    }
   }
 
-  &__count {
-    background-color: var.$main-accent-color;
-    color: var.$main-dark-color;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    font-weight: bold;
-  }
+  // &__count {
+  //   background-color: var.$primary-accent-color;
+  //   color: var.$secondary-text-color;
+  //   border-radius: 50%;
+  //   width: 24px;
+  //   height: 24px;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   font-size: 12px;
+  //   font-weight: bold;
+  // }
 
   &__iconHome {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    // justify-content: center;
 
-    mask-image: url('src/img/icons/home.svg');
+    mask-image: url('src/img/icons/home-light.svg');
     mask-size: contain;
-    background-color: var.$background-color;
+    background-color: var.$light-grey-color;
+
+
+    @include mixins.on-desktop {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &__iconCart {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
 
-    mask-image: url('src/img/icons/cart.svg');
+    mask-image: url('src/img/icons/cart-light.svg');
     mask-size: contain;
-    background-color: var.$background-color;
+    background-color: var.$light-grey-color;
+
+
+    @include mixins.on-desktop {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &__iconFavorite {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
 
-    mask-image: url('src/img/icons/favMenu.svg');
+    mask-image: url('src/img/icons/heart-light.svg');
     mask-size: contain;
-    background-color: var.$background-color;
+    background-color: var.$light-grey-color;
+
+
+    @include mixins.on-desktop {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &__title {
-    font-size: 24px;
+    white-space: nowrap;
+
+    @include mixins.on-tablet {
+      max-width: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        max-width var.$effectDuration ease,
+        opacity var.$effectDuration ease;
+    }
+
+    @include mixins.on-desktop {
+      max-width: none;
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
-  &__userInfo {
+  &__open &__title {
+    @include mixins.on-tablet {
+      max-width: 70px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @include mixins.on-desktop {
+      max-width: none;
+      opacity: 1;
+    }
+  }
+
+  // &__open &__title {
+  //   @include mixins.on-tablet {
+  //     display: block;
+  //   }
+  // }
+
+  &__footer {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 16px;
+    padding-bottom: 22px;
+
+    @include mixins.on-tablet {
+      justify-content: space-between;
+      align-items: self-end;
+      gap: 5px;
+      padding-bottom: 0;
+    }
   }
 }
 
-.user {
+.logout {
+  &__button {
+    width: 200px;
+    height: 56px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var.$secondary-text-color;
+    border: 1px solid var.$border-color;
+    background-color: var.$white-background-color;
+    border-radius: var.$border-radius;
+
+    @include mixins.on-tablet {
+      width: 110px;
+      height: 40px;
+    }
+
+    @include mixins.on-desktop {
+      width: 200px;
+      height: 56px;
+    }
+  }
+
   &__icon {
+    width: 24px;
+    height: 24px;
+
+    mask-image: url('src/img/icons/exit.svg');
+    mask-size: contain;
+
+    background-color: var.$secondary-text-color;
+  }
+}
+
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // width: 240px;
+  height: 40px;
+  padding-inline: 8px;
+  gap: 8px;
+  box-sizing: border-box;
+
+  @include mixins.on-tablet {
     width: 32px;
     height: 32px;
+    padding-inline: 0;
+    justify-content: center;
+  }
+  @include mixins.on-desktop {
+    width: 240px;
+    height: 58px;
+    padding-inline: 8px;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
 
     mask-image: url('src/img/icons/user.svg');
     mask-size: contain;
+    mask-repeat: no-repeat;
 
-    background-color: var.$background-color;
+    background-color: var.$secondary-text-color;
+
+    @include mixins.on-desktop {
+      width: 32px;
+      height: 32px;
+    }
+
   }
 
   &__details {
@@ -127,14 +346,66 @@
   }
 
   &__name {
-    color: var.$background-color;
+    // width: 136px;
+    color: var.$secondary-text-color;
+
+    @include mixins.on-tablet {
+      display: none;
+      width: 84px;
+    }
+
+    @include mixins.on-desktop {
+      display: block;
+      width: 136px;
+    }
   }
 
-  &__email {
-    color: var.$background-color;
+  &__arrow {
+    width: 16px;
+    height: 16px;
+
+    mask-image: url('src/img/icons/arrow-up.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+
+    background-color: var.$details-color;
+    transition: transform 0.3s ease;
+
+    @include mixins.on-tablet {
+      display: none;
+    }
+
+    @include mixins.on-desktop {
+      display: block;
+      width: 24px;
+    height: 24px;
+    }
+  }
+
+  &__arrow_open {
+    transform: rotate(180deg);
   }
 }
 
+.sidebar__open {
+  .user {
+    @include mixins.on-tablet {
+      width: 148px;
+      // justify-content: space-between;
+    }
+    
+    @include mixins.on-desktop{
+      width: 240px;
+      justify-content: space-between;
+    }
 
+    &__name,
+    &__arrow {
+      @include mixins.on-tablet {
+        display: block;
+      }
+    }
+  }
+}
 
 

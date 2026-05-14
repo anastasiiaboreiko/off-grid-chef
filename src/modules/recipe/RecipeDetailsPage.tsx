@@ -1,18 +1,21 @@
 import { useContext } from "react";
 import styles from './RecipeDetailsPage.module.scss';
 import { RecipesContext } from "../../shared/context/RecipesContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { PowerDetails } from "../../shared/ui/powerDetails/PowerDetails";
 import { ComplexityDetails } from "../../shared/ui/complexityDetails/ComplexityDetails";
 import { TypeDetails } from "../../shared/ui/typeDetails/TypeDetails";
 import { Ingredient } from "../../shared/ui/ingredient/Ingredient";
 import { FavoriteButton } from "../../shared/ui/buttons/favoriteButton/FavoriteButton";
 import { TimeDetails } from "../../shared/ui/timeDetails/TimeDetails";
+import { BackButton } from "../../shared/ui/buttons/backButton/BackButton";
+import { useDeviceType } from "../../shared/hooks/useDeviceType";
 
 export const RecipeDetailsPage = () => {
   const { recipes } = useContext(RecipesContext);
   const { recipeId } = useParams<{ recipeId?: string }>();
-  const navigate = useNavigate();
+  const { isMobile } = useDeviceType();
+  // const navigate = useNavigate();
 
   const currentRecipe = recipeId
     ? recipes.find(recipe => recipe.id === Number(recipeId))
@@ -22,25 +25,21 @@ export const RecipeDetailsPage = () => {
 
   const recipeInstructions = currentRecipe?.instructions;
 
+  console.log('recipeInstructions: ', recipeInstructions);
+
   const removeStepNumber = (value: string) =>
     value.replace(/^\d+\.\s/, "");
 
   return (
     <div className={styles.container}>
-      <div 
-        className={styles.backButton}
-        onClick={() => {navigate('/')}}
-      >
-        <span className={styles.backButton__icon} />
-        <p className={styles.backButton__title}>Back</p>
-      </div>
+      {!isMobile && <BackButton />}
 
       <div className={styles.recipe}>
         <div className={styles.recipe__mainBlock}>
           <div className={styles.pictureBlock}>
             <img 
               className={styles.picture}
-              src="src/img/tunaSandwich.jpg" 
+              src={currentRecipe?.image} 
               alt="recipe picture" 
             />
 
@@ -55,7 +54,7 @@ export const RecipeDetailsPage = () => {
             <h2 className={styles.mainInfo__title}>
               {currentRecipe?.title}
             </h2>
-            <p className={styles.mainInfo__description}>
+            <p className={`main-text ${styles.mainInfo__description}`}>
               {currentRecipe?.description}
             </p>
             <div className={styles.mainInfo__details}>
@@ -76,12 +75,14 @@ export const RecipeDetailsPage = () => {
             {recipeInstructions && (
               recipeInstructions.map(instruction => (
                 <div className={styles.preparation__item} key={instruction.id}>
-                  <p className={styles.preparation__instruction}>
+                  <div className={styles.preparation__stepNumber}>
+                    <p className={`small-text ${styles.preparation__stepNumberText}`}>
+                      {instruction.text.split('.')[0]}
+                    </p>
+                  </div>
+                  <p className={`body-text ${styles.preparation__instruction}`}>
                     {removeStepNumber(instruction.text)}
                   </p>
-                  <div className={styles.preparation__stepNumber}>
-                    <p className={styles.preparation__stepNumberText}>{instruction.id}</p>
-                  </div>
               </div>
               ))
             )}
@@ -89,9 +90,9 @@ export const RecipeDetailsPage = () => {
           </div>
 
           <div className={styles.ingredients}>
-            <h2 className={styles.ingredients__title}>
+            <h3 className={styles.ingredients__title}>
               Ingredients
-            </h2>
+            </h3>
             {recipeIngredients && (
               <ul className={styles.ingredients__list}>
                 {recipeIngredients.map(ingredient => (
@@ -99,10 +100,14 @@ export const RecipeDetailsPage = () => {
                 ))}
               </ul>
             )}
-            <div className={styles.ingredients__button}>
-              <div className={styles.buttonInner}>
-                <p className={styles.buttonText}>Add to cart</p>
+            <div className={styles.ingredients__footer}>
+              <div className={styles.buttonInfo}>
+                <span className={styles.buttonInfo__icon} />
               </div>
+              
+              <button className={`button-text ${styles.buttonAddToCart}`}>
+                Add to cart
+              </button>
             </div>
           </div>
         </div>

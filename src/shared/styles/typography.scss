@@ -2,15 +2,157 @@
 @use './mixins.scss';
 
 h1 {
-  font-size: 24px;
+  color: var.$primary-text-color;
+  font-weight: 500;
+  font-size: 20px;
   line-height: 140%;
-  color: var.$main-text-color;
+  letter-spacing: 0%;
+
 
   @include mixins.on-tablet {
-    font-size: 36px;
+    font-size: 28px;
+    line-height: 130%;
+    font-weight: 500;
+
   }
 
   @include mixins.on-desktop {
+    font-weight: 600;
     font-size: 40px;
+    font-weight: 600;
+  }
+}
+
+h2 {
+  font-weight: 500;
+  // font-size: 16px;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: 0%;
+
+  @include mixins.on-tablet {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: 0%;
+  }
+
+  @include mixins.on-desktop {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 140%;
+    letter-spacing: 0%;
+  }
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 130%;
+  letter-spacing: 0%;
+
+  @include mixins.on-tablet {
+    font-size: 18px;
+  }
+
+  @include mixins.on-desktop {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 130%;
+    letter-spacing: 0%;
+  }
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 14px;
+  // font-size: 24px;
+  line-height: 120%;
+  letter-spacing: 0%;
+
+  @include mixins.on-tablet {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: 0%;
+  }
+
+  @include mixins.on-desktop {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: 0%;
+  }
+  
+}
+
+.main-text {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+  letter-spacing: 0%;
+
+  @include mixins.on-tablet {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 120%;
+    letter-spacing: 0%;
+  }
+
+  @include mixins.on-desktop {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0%;
+  }
+}
+
+.body-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 120%;
+  letter-spacing: 0%;
+
+  @include mixins.on-tablet {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: 0%;
+  }
+
+  @include mixins.on-desktop {
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0%;
+  }
+}
+
+.button-text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0%;
+
+  @include mixins.on-tablet {
+    font-size: 14px;
+  }
+
+  @include mixins.on-desktop {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+  }
+}
+
+.small-text {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+  letter-spacing: 0%;
+
+  @include mixins.on-desktop {
+    font-size: 14px;
   }
 }
