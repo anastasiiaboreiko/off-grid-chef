@@ -1,11 +1,79 @@
 @use '../shared/styles/var.scss';
+@use '../shared/styles/mixins.scss';
 
 .app {
   display: flex;
-  min-height: 100vh;
-}
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  // min-height: 100vh;
+  // min-width: 100vw;
 
-.app__main {
-  flex: 1;
-  background-color: var.$background-color;
+  @include mixins.on-tablet {
+    flex-direction: row;
+  }
+
+  &__aside {
+    // width: 100vh;
+    flex-shrink: 0;
+    // display: flex;
+    height: 0;
+    width: 0;
+    order: 1;
+
+    @include mixins.on-tablet {
+      // flex-direction: row;
+      height: 100vh;
+      width: auto;
+      // flex-shrink: 0;
+      order: 0;
+    }
+  }
+
+  &__main {
+    order: 0;
+    min-height: 0;
+    position: relative;
+    height: 100vh;
+    flex: 1;
+    overflow: hidden;
+    background-color: var.$background-color;
+
+    @include mixins.on-tablet {
+      order: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      background: #00000040;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    } 
+  }
+
+  &--sidebar-open {
+    @include mixins.on-tablet {
+      .app__main::after {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    @include mixins.on-desktop {
+      .app__main::after {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+
+  // &__aside:hover + &__main::after {
+  //   opacity: 1;
+  //   pointer-events: auto;
+  // }
 }

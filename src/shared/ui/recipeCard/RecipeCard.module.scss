@@ -1,12 +1,21 @@
 @use '../../styles/var.scss';
+@use '../../styles/mixins.scss';
 
 .recipeCard {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 324px;
-  border: 1px solid var.$border-color;
+  width: 100%;
   border-radius: var.$border-radius;
+  background-color: var.$white-background-color;
+
+  @include mixins.on-tablet {
+    width: 245px;
+  }
+  @include mixins.on-desktop {
+    width: 324px;
+
+  }
 }
 
 .cardLink {
@@ -15,79 +24,97 @@
 
 .pictureBlock {
   position: relative;
+
+  &__picture {
+    display: block;
+    width: 100%;
+    max-height: 170px;
+    object-fit: cover;
+    border-radius: var.$border-radius;
+    cursor: pointer;
+  
+    @include mixins.on-tablet {
+      height: 110px;
+      width: 245px;
+    }
+    @include mixins.on-desktop {
+      height: 148px;
+      width: 324px;
+    }
+  }
+  
+  &__specs {
+    position: absolute;
+    width: 100%;
+    top: 16px;
+    display: flex;
+    padding-inline: 16px;
+    justify-content: space-between;
+    @include mixins.on-tablet {
+      width: 245px;
+    }
+  
+    @include mixins.on-desktop {
+      width: 324px;
+    }
+  }
 }
 
-.picture {
-  display: block;
-  width: 324px;
-  height: 164px;
-  object-fit: cover;
-  border-radius: var.$border-radius;
-  cursor: pointer;
+.textBlock {
+  padding-inline: 12px;
+  padding-block: 12px;
+
+  @include mixins.on-tablet {
+    padding-inline: 12px;
+    padding-block: 12px;
+  }
+
+  @include mixins.on-desktop {
+    padding-inline: 16px;
+    padding-block: 16px;
+  }
+
+  &__title {
+    display: flex;
+    // box-sizing: content-box;
+    // height: 60px;
+    cursor: pointer;
+    color: var.$primary-text-color;
+
+    @include mixins.on-tablet {
+      height: 36px;
+      line-height: 100%;
+    }
+  
+    @include mixins.on-desktop {
+      height: 48px;
+      line-height: 100%;
+    }
+  }
+  
+  &__description {
+    display: flex;
+    box-sizing: content-box;
+    padding-top: 4px;
+    margin: 0;  
+    color: var.$additional-text-color;
+
+    @include mixins.on-desktop {
+      padding-top: 8px;
+    }
+  }
 }
 
-.specs {
-  position: absolute;
-  width: 324px;
-  top: 16px;
-  display: flex;
-  padding-inline: 16px;
-  justify-content: space-between;
-}
-
-// .time {
-//   display: flex;
-//   gap: 4px;
-//   background-color: var.$primary-accent-color;
-//   border-radius: var.$border-radius;
-//   justify-content: center;
-//   align-items: center;
-//   height: 30px;
-//   width: 70px;
-//   color: var.$background-color;
-
-//   &__icon {
-//     width: 16px;
-//     height: 16px;
-
-//     mask-image: url('/src/img/icons/clock.svg');
-//     mask-size: contain;
-
-//     background-color: var.$background-color;
-//   }
-
-//   &__text {
-//     font-size: 16px;
-//   }
-// }
-
-.recipeTitle {
-  display: block;
-  box-sizing: content-box;
-  padding-inline: 16px;
-  padding-block: 16px;
-  font-size: 24px;
-  line-height: 30px;
-  height: 60px;
-  cursor: pointer;
-  color: var.$primary-text-color;
-}
-
-.recipeDescription {
-  display: flex;
-  box-sizing: content-box;
-  margin: 0;  
-  padding-inline: 16px;
-  padding-bottom: 16px;
-  line-height: 22px;
-  height: 44px;
-}
-
-.recipeDetails {
+.detailsBlock {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline: 16px;
-  padding-bottom: 10px;
+  padding-inline: 12px;
+  padding-bottom: 12px;
+
+  @include mixins.on-desktop {
+    padding-inline: 16px;
+    padding-bottom: 16px;
+  }
 }
 

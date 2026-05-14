@@ -13,7 +13,7 @@ export const FavoritesPage = () => {
 
   return (
     <div className={styles.favotites}>
-      <h1 className={styles.title}>Favorites</h1>
+      <h1 className={styles.title}>Favorite</h1>
       
       {favoriteRecipes.length > 0 ? (
         <RecipeList recipes={favoriteRecipes} />

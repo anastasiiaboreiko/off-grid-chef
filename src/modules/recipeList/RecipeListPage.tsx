@@ -71,6 +71,8 @@ export const RecipeListPage = () => {
       
       </div>
 
+      <h2 className={styles.additionalTitle}>Recommended Recipes</h2>
+
       {loading && <Loader />}
 
       {!loading && errorMessage && <ErrorMessage />}

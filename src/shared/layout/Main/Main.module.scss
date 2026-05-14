@@ -1,5 +1,64 @@
+@use '../../styles/var.scss';
+
 .main {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   overflow-y: auto; 
-  min-width: 0; 
+  // overflow: hidden;
+  // min-width: 100vw; 
+  min-width: 0;
+
+  &__header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    height: var.$mobileHeaderHeight;
+    // background-color: var.$white-background-color;
+    padding-inline: 16px;
+  }
+
+  &__burgerMenu {
+    width: 32px;
+    height: 32px;
+
+    mask-image: url('/src/img/icons/burgerMenu.svg');
+    mask-size: contain;
+
+    background-color: var.$secondary-text-color;
+  }
+
+  &__close {
+    width: 32px;
+    height: 32px;
+
+    mask-image: url('/src/img/icons/close.svg');
+    mask-size: contain;
+
+    background-color: var.$secondary-text-color;
+  }
+
+  &__content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  &__footer {
+    height: 34px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 21px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 134px;
+      height: 5px;
+      background-color: black;
+      border-radius: var.$border-radius;
+    }
+  }
 }
