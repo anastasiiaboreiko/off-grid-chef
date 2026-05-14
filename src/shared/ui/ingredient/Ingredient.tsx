@@ -14,18 +14,19 @@ export const Ingredient: React.FC<Props> = ({ ingredient }) => {
   return (
     <li className={styles.ingredient} key={ingredient.id}>
       <div className={styles.ingredient__item}>
-        <p className={styles.ingredient__name}>
-          {ingredient.name}
-        </p>
-
-        <div className={styles.ingredient__details}>
-          <p>{`${ingredient.quantity} ${ingredient.unit}`}</p>
+        <div className={styles.firstPart}>
           <input
             type="checkbox"
             checked={isChecked}
             onChange={() => setIsChecked(prev => !prev)}
+            className={styles.firstPart__input}
           />
+          <p className={`body-text ${styles.firstPart__name}`}>
+            {ingredient.name}
+          </p>
         </div>
+        
+        <p className={`body-text ${styles.secondPart}`}>{`${ingredient.quantity} ${ingredient.unit}`}</p>
       </div>
     </li>
   );

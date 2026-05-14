@@ -12,7 +12,7 @@ export const TimeDetails: React.FC<Props> = ({ recipe })  => {
         className={styles.time__icon} 
         aria-hidden="true"
       />
-      <p className={styles.time__text}>{recipe.cooking_time}m</p>
+      <p className={`main-text`}>{recipe.cooking_time}m</p>
     </div>
   );
 }

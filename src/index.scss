@@ -7,8 +7,13 @@
   font-family: 'Manrope', sans-serif;
   color: var.$primary-text-color;
   background-color: var.$background-color;
+  height: 100%;
+  margin: 0;
 
   &__body {
+    height: 100%;
+    min-width: 320px;
+    max-width: 100%;
   }
 }
 

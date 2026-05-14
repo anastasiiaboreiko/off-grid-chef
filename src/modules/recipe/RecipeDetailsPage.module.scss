@@ -3,91 +3,136 @@
 @use '../../shared/styles/typography.scss';
 
 .container {
+  
   @include mixins.content-padding-inline;
-  padding-block: 40px;
+  
   max-width: 1120px;
   margin-left: 0;
-}
+  padding-block: 16px 110px;
 
-.backButton {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 48px;
-  width: 100px;
-  margin-bottom: 40px;
-  background-color: var.$background-color;
-  border-radius: var.$border-radius;
-  border: 1px solid var.$border-color;
-
-  &__icon {
-    width: 20px;
-    height: 40px;
-
-    mask-image: url('/src/img/icons/arrowLeft.svg');
-    mask-size: contain;
-
-    background-color: var.$primary-text-color;
+  @include mixins.on-tablet {
+    padding-block: 16px;
   }
 
-  &__title {
-    font-size: 24px;
-    line-height: 140%;
-    color: var.$primary-text-color;
+  @include mixins.on-desktop {
+    padding-block: 40px;
   }
 }
 
 .recipe {
+
   &__mainBlock {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    gap: 32px;
-    padding-bottom: 40px;
+    gap: 16px;
+    padding-bottom: 16px;
+
+    @include mixins.on-tablet {
+      flex-direction: row;
+      padding-bottom: 24px;
+    }
+
+    @include mixins.on-desktop {
+      gap: 32px;
+      padding-bottom: 40px;
+    }
   }
 
   &__detailsBlock {
     display: flex;
-    gap: 40px;
+    flex-direction: column;
+    gap: 16px;
+
+    @include mixins.on-tablet {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    @include mixins.on-desktop {
+      gap: 32px;
+    }
+
   }
 }
 
 .pictureBlock {
   position: relative;
+  width: 100%;
+
+  @include mixins.on-tablet {
+    width: 226px;
+  }
+
+  @include mixins.on-desktop {
+    width: 324px;
+  }
 }
 
 .picture {
-  width: 324px;
-  height: 240px;
+  display: block;
+  width: 100%;
+  height: 149px;
   object-fit: cover;
-  border: 1px solid var.$border-color;
+  // border: 1px solid var.$border-color;
   border-radius: var.$border-radius;
+
+  @include mixins.on-tablet {
+    width: 226px;
+    height: 168px;
+  }
+
+  @include mixins.on-desktop {
+    width: 324px;
+    height: 240px;
+  }
 }
 
 .specs {
   position: absolute;
-  width: 324px;
   top: 16px;
-  left: 260px;
-  display: flex;
-  padding-inline: 16px;
-  justify-content: space-between;
+  right: 16px;
+
+  @include mixins.on-tablet {
+    top: 12px;
+    right: 12px;
+  }
+
+  @include mixins.on-desktop {
+    top: 16px;
+    right: 16px;
+  }
 }
 
 .mainInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 684px;
-  padding-block: 24px;
-  padding-inline: 32px;
-  border: 1px solid var.$border-color;
+  // width: 684px;
+  padding-block: 12px;
+  padding-inline: 16px;
   border-radius: var.$border-radius;
+  background-color: var.$white-background-color;
+
+  @include mixins.on-tablet {
+    padding-block: 16px;
+    padding-inline: 24px;
+    width: 100%;
+  }
+
+  @include mixins.on-desktop {
+    // width: 684px;
+    padding-block: 24px;
+    padding-inline: 32px;
+  }
 
   &__title {
-    font-size: 32px;
-    line-height: 140%;
-    padding-bottom: 16px;
+    padding-bottom: 12px;
+
+    @include mixins.on-desktop {
+      padding-bottom: 16px;
+    }
   }
 
   &__description {
@@ -95,86 +140,163 @@
   }
 
   &__details {
+    padding-top: 16px;
     display: flex;
-    gap: 16px;
+    gap: 8px;
+
+    @include mixins.on-desktop {
+      gap: 16px;
+    }
   }
 }
 
 .preparation {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 12px;
   width: 100%;
 
+  // @include mixins.on-tablet {
+  //   width: auto;
+  // }
+
+  // @include mixins.on-desktop {
+  //   width: auto;
+  // }
+
   &__item {
-    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background-color: var.$white-background-color;
+    border-radius: var.$border-radius;
+    padding: 12px;
+
+    @include mixins.on-desktop {
+      padding-inline: 24px;
+      padding-block: 16px;
+    }
   }
 
   &__instruction {
-    padding-inline: 48px 24px;
-    padding-block: 32px;
-    border: 1px solid var.$border-color;
-    border-radius: var.$border-radius;
+    color: var.$light-grey-color;
   }
 
   &__stepNumber {
-    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 8px;
-    left: 8px;
-    width: 32px;
-    height: 32px;
-    background-color: var.$primary-accent-color;
-    border-radius: var.$border-radius;
+    width: 24px;
+    height: 24px;
+    background-color: var.$background-color;
+    border-radius: 50%;
   }
 
   &__stepNumberText {
-    color: var.$background-color;
+    color: var.$primary-text-color;
   }
 
 }
 
 .ingredients {
-  border: 1px solid var.$border-color;
   border-radius: var.$border-radius;
+  background-color: var.$white-background-color;
   width: 100%;
-  padding-block: 24px;
-  padding-inline: 32px;
+  padding: 16px;
+
+  @include mixins.on-tablet {
+    // width: auto;
+  }
+
+  @include mixins.on-desktop {
+    // width: auto;
+    padding: 32px;
+  }
 
   &__title {
-    font-size: 32px;
-    line-height: 140%;
-    padding-bottom: 32px;
+    padding-bottom: 16px;
+
+    @include mixins.on-desktop {
+      // width: auto;
+      padding-bottom: 24px;
+    }
   }
 
   &__list {
     display: flex;
     flex-direction: column;
     padding-bottom: 56px;
+    gap: 8px;
   }
 
-  &__button {
+  &__footer {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
   }
 }
 
 
-.buttonInner {
+.buttonAddToCart {
   display: inline-flex;
-  border: 1px solid var.$border-color;
+  justify-content: center;
+  align-items: center;
+ 
+  font-family: inherit;
+  border: none;
+  width: 120px;
+  height: 40px;
+  
+  color: var.$white-background-color;
   background-color: var.$primary-accent-color;
   border-radius: var.$border-radius;
+
+  @include mixins.on-tablet {
+    width: 96px;
+    height: 32px;
+  }
+
+  @include mixins.on-desktop {
+    width: 200px;
+    height: 48px;
+  }
 }
 
-.buttonText {
-  font-size: 16px;
-  line-height: 100%;
-  padding-inline: 18px;
-  padding-block: 16px;
-  color: var.$background-color;
+.buttonInfo {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #FEEFE6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mixins.on-desktop {
+    width: 48px;
+    height: 48px;
+  }
+  
+  &__icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+  
+      mask-image: url('/src/img/icons/info.svg');
+      mask-size: contain;
+      // mask-repeat: no-repeat;
+  
+      background-color: var.$primary-accent-color;
+  
+      // @include mixins.on-tablet {
+      //   width: 16px;
+      //   height: 16px;
+      // }
+  
+      @include mixins.on-desktop {
+        width: 24px;
+        height: 24px;
+      }
+  }
+ 
 }
 
 

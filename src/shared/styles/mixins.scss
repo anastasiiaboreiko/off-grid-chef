@@ -12,6 +12,14 @@
   }
 }
 
+@mixin hover($property, $toValue) {
+  transition: #{$property} var.$effectDuration;
+
+  &:hover {
+    #{$property}: $toValue;
+  }
+}
+
 @mixin content-padding-inline() {
   padding-inline: 16px;
   margin-inline: auto;
@@ -19,7 +27,7 @@
 
   @include on-tablet {
     margin-inline: auto;
-    padding-inline: 30px;
+    padding-inline: 24px;
   }
 
   @include on-desktop {

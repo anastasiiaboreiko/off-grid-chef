@@ -4,25 +4,58 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 48px;
-  border-bottom: 1px solid var.$border-color;
+  height: 40px;
+  // border-bottom: 1px solid var.$border-color;
 
   &__item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
   }
 
-  &__name {
-    font-size: 20px;
-    line-height: 140%;
+}
+
+.firstPart {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &__input{
+    appearance: none;
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 5px;
+    border: 1px solid var.$primary-accent-color;
+    background-color: var.$white-background-color;
+    cursor: pointer;
   }
 
-  &__details {
-    display: flex;
-    gap: 16px;
-
-    font-size: 20px;
-    line-height: 140%;
+  &__input:checked {
+    background-color: var.$primary-accent-color;
+    border-color: var.$primary-accent-color;
   }
+
+  &__input:checked::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    mask-image: url('/src/img/icons/check-light.svg');
+    mask-size: 12px 12px;
+    mask-position: center;
+    mask-repeat: no-repeat;
+
+    background-color: var.$white-background-color;
+  }
+
+  &__name { 
+    color: var.$secondary-text-color;
+  }
+}
+
+.secondPart {
+  color: var.$secondary-text-color;
 }

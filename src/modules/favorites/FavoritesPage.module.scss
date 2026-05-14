@@ -1,7 +1,27 @@
+@use '../../shared/styles/mixins.scss';
+
 .favotites {
-  padding: 30px;
+  padding: 16px;
+
+  @include mixins.on-tablet {
+    padding: 24px;
+  }
+  @include mixins.on-desktop {
+    padding-inline: 40px;
+    padding-block: 32px;
+  }
+ 
 }
 
 .title {
   font-weight: 400;
+  padding-bottom: 16px;
+
+  @include mixins.on-tablet {
+    padding-bottom: 24px;
+  }
+
+  @include mixins.on-desktop {
+    padding-bottom: 32px;
+  }
 }
