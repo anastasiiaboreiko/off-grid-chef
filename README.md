@@ -1,4 +1,4 @@
-# Blackout Helper
+# Off-Grid_Chef
 
 Local React + Django application for browsing recipes that work with or without power.
 
