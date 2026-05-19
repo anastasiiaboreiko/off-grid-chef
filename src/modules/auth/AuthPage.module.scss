@@ -1,0 +1,250 @@
+@use '../../shared/styles/mixins.scss';
+@use '../../shared/styles/var.scss';
+
+.authPage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var.$white-background-color;
+
+  @include mixins.on-desktop {
+    flex-direction: row;
+  }
+
+  &__backgroundImage {
+
+    min-height: 240px;
+    background-image: url('../../img/auth_tablet.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: var.$border-radius;
+
+    @include mixins.on-tablet {
+      min-height: 320px;
+    }
+
+    @include mixins.on-desktop {
+      height: auto;
+      width: auto;
+      flex: 1.5 1 0;
+      background-image: url('../../img/auth_desktop.png');
+    }
+  }
+
+  &__container {
+    @include mixins.content-padding-inline;
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    padding-block: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  
+    @include mixins.on-tablet {
+      padding-block: 40px;
+    }
+  
+    @include mixins.on-desktop {
+      padding-block: 56px;
+    }
+  }
+}
+
+.title {
+  padding-block: 40px 24px;
+  color: var.$secondary-text-color;
+
+  @include mixins.on-tablet {
+    padding-block: 32px 16px;
+  }
+  @include mixins.on-desktop {
+    padding-block: 80px 24px;
+  }
+}
+
+.subTitle {
+  color: var.$secondary-text-color;
+  padding-bottom: 24px;
+
+  @include mixins.on-desktop {
+    padding-bottom: 40px;
+  }
+}
+
+.error {
+  color: var.$primary-accent-color;
+  padding-block: 4px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: self-end;
+  width: 100%;
+
+  @include mixins.on-tablet {
+    width: 320px;
+  }
+
+  @include mixins.on-desktop {
+    width: 440px;
+  }
+
+  &__label {
+    padding-bottom: 24px;
+    width: 100%;
+    color: var.$secondary-text-color;
+  }
+
+  &__input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40px;
+    margin-top: 8px;
+    padding: 14px 16px;
+    background-color: var.$input-background-color;
+    border: 1px solid transparent;
+    border-radius: var.$border-radius;
+    outline: none;
+    color: var.$secondary-text-color;
+
+    @include mixins.on-tablet {
+      width: 320px;
+    }
+
+    @include mixins.on-desktop {
+      width: 440px;
+      height: 56px;
+    }
+
+    &::placeholder {
+      color: var.$light-grey-color;
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      border-color: var.$primary-accent-color;
+    }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
+      -webkit-text-fill-color: var.$primary-text-color;
+    }
+  
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
+      -webkit-text-fill-color: var.$primary-text-color;
+      border-color: var.$primary-accent-color;
+    }
+  }
+
+  &__passwordWrapper {
+    position: relative;
+  }
+
+  &__eyeButton {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    border: none;
+    background-color: transparent;
+    transform: translateY(-40%);
+  }
+
+  &__eyeImage {
+    width: 16px;
+    height: 16px;
+  }
+
+  &__checkbox {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 24px;
+
+    @include mixins.on-desktop {
+      padding-bottom: 32px;
+    }
+
+    &_input{
+      appearance: none;
+      -webkit-appearance: none;
+      height: 18px;
+      width: 18px;
+      border-radius: 5px;
+      border: 1px solid var.$primary-accent-color;
+      background-color: var.$white-background-color;
+      cursor: pointer;
+    }
+  
+    &_input:checked {
+      background-color: var.$primary-accent-color;
+      border-color: var.$primary-accent-color;
+    }
+  
+    &_input:checked::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+  
+      mask-image: url('/src/img/icons/check-light.svg');
+      mask-size: 12px 12px;
+      mask-position: center;
+      mask-repeat: no-repeat;
+  
+      background-color: var.$white-background-color;
+    }
+
+    &_text {
+      color: var.$light-grey-color;
+    }
+  }
+
+  &__question {
+    color: var.$secondary-text-color;
+    padding-bottom: 32px;
+  }
+
+  &__submitButton {
+    cursor: pointer;
+    width: 96px;
+    height: 32px;
+    border: none;
+    border-radius: var.$border-radius;
+    color: var.$white-background-color;
+    background-color: var.$primary-accent-color;
+
+    &:disabled {
+      background-color: var.$accent-disabled-color;
+
+    }
+    @include mixins.on-desktop {
+      width: 200px;
+      height: 48px;
+    }
+  }
+}
+
+.modeChoosing {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  align-items: center;
+  gap: 8px;
+
+  &__text {
+    color: var.$light-grey-color;
+  }
+
+  &__button {
+    border: none;
+    background-color: transparent;
+    color: var.$primary-accent-color;
+  }
+}

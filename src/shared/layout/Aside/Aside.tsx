@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-// import { FavoritesContext } from "../../context/FavoritesContextStore";
-// import { RecipesContext } from "../../context/RecipesContext";
+import { useState, useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from './Aside.module.scss';
 import { Logo } from "../../ui/logo/Logo";
 import { useDeviceType } from "../../hooks/useDeviceType";
+import { AuthContext } from "../../context/AuthContext";
 
 type Props = {
   isSidebarOpen: boolean;
@@ -12,17 +11,15 @@ type Props = {
 }
 
 export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  // const { favorites } = useContext(FavoritesContext);
-  // const { recipes } = useContext(RecipesContext);
   const [isOpen, setIsOpen] = useState(false);
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { isMobile, isTablet } = useDeviceType();
+  const { logout, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  // const count = recipes.filter(recipe => favorites.includes(recipe.id)).length;
-
-  // const correctLogo = isTablet && !isSidebarOpen 
-  //   ? 'src/img/icons/favicon.svg'
-  //   : "src/img/logo.svg";
+  const handleLogout =  async () => {
+    await logout();
+    navigate('/auth');
+  }
 
   const handleClick = () => {
     setIsOpen(prev => !prev)
@@ -49,18 +46,10 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
             aria-expanded={isSidebarOpen}
           >
             <Logo 
-              //  correctLogo={correctLogo} 
-              isTablet={isTablet}
-              isSidebarOpen={isSidebarOpen} 
+              option={isTablet && !isSidebarOpen ? 'compact' : 'default'} 
             />
           </button>
         )}
-       
-         {/* <img 
-            src={correctLogo}
-            className={styles.sidebar__logo} 
-            alt="logo"
-          /> */}
       </header>
 
       <nav className={styles.sidebar__nav}>
@@ -112,7 +101,6 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
             >
               <span className={styles.sidebar__iconFavorite} />
               <h4 className={styles.sidebar__title}>Favorite</h4>
-              {/* {count > 0 && <span className={styles.sidebar__count}>{count}</span>} */}
             </NavLink>
           </li>
         </ul>
@@ -122,7 +110,11 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
       <footer className={styles.sidebar__footer}>
         {isOpen && (!isTablet || isSidebarOpen) && (
           <div className={styles.logout}>
-            <button className={styles.logout__button}>
+            <button  
+              type='button'
+              className={styles.logout__button} 
+              onClick={handleLogout}
+            >
               <p className={`body-text`}>Logout</p>
               <span className={styles.logout__icon} aria-hidden="true"/>
             </button>
@@ -135,7 +127,7 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
             className={styles.user__icon} 
             onClick={handleSidebarToggle}
           />
-            <p className={`body-text ${styles.user__name}`}>Albert Flores</p>
+            <p className={`body-text ${styles.user__name}`}>{user?.full_name}</p>
             <span 
               className={`
                 ${styles.user__arrow} 
@@ -146,8 +138,6 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
         </div>
         
       </footer>
-    
-     
     </aside>
   );
 };
