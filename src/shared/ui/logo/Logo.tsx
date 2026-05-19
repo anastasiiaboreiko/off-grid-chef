@@ -1,13 +1,15 @@
 import styles from './Logo.module.scss';
 
+type LogoOptions = 'default' | 'compact';
+
 type Props = {
-  // correctLogo?: string;
-  isTablet?: boolean,
-  isSidebarOpen?: boolean,
+  option?: LogoOptions;
 };
 
-export const Logo: React.FC<Props> = ({ isSidebarOpen, isTablet }) => {
-  const correctLogo = isTablet && !isSidebarOpen 
+export const Logo: React.FC<Props> = ({ option = 'default' }) => {
+  const isCompact = option === 'compact';
+
+  const correctLogo = isCompact 
   ? 'src/img/icons/favicon.svg'
   : "src/img/logo.svg";
 
@@ -16,7 +18,7 @@ export const Logo: React.FC<Props> = ({ isSidebarOpen, isTablet }) => {
       src={correctLogo}
       className={`
         ${styles.logo}
-        ${isSidebarOpen ? styles.logo__open : ''}
+        ${isCompact ? styles.logo__compact : styles.logo__default}
       `} 
       alt="logo"
     />

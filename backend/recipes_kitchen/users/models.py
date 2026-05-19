@@ -29,8 +29,8 @@ class User(AbstractUser):
     username = None
     
     email = models.EmailField(unique=True)
-    country_code = models.CharField(max_length=5)
-    phone_number = models.CharField(max_length=15)
+    country_code = models.CharField(max_length=5, blank=True)
+    phone_number = models.CharField(max_length=15, blank=True)
     full_name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
