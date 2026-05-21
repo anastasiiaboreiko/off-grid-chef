@@ -1,7 +1,188 @@
-.cart {
-  padding: 30px;
+@use '../../shared/styles/var.scss';
+@use '../../shared/styles/mixins.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-block: 16px 24px;
+  min-height: 100%;
+  max-width: var.$content-max-width - 320px;
+
+  @include mixins.on-tablet {
+    padding-block: 24px 40px;
+  }
+
+  @include mixins.on-desktop {
+    padding-block: 32px 40px;
+  }
 }
 
-.title {
-  font-weight: 400;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+  
+  @include mixins.on-desktop {
+    padding-bottom: 32px;
+  }
+
+  &__button {
+    font-family: inherit;
+    color: var.$secondary-text-color;
+    text-decoration: underline;
+    border: none;
+    background-color: transparent;
+  }
 }
+
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.cartList {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 32px;
+  
+
+  @include mixins.on-tablet {
+    grid-template-columns: repeat(2, minmax(308px, 1fr));
+    gap: 16px;
+  }
+
+  @include mixins.on-desktop {
+    grid-template-columns: repeat(3, minmax(278px, 324px));
+    gap: 16px 32px;
+  }
+}
+
+.listItem {
+  position: relative;
+  list-style: none;
+  box-shadow: 0px 0px 4px 0px #B0B0B033;
+  border-radius: var.$border-radius;
+  background-color: var.$white-background-color;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 28px;
+
+  @include mixins.on-desktop {
+    width: 100%;
+    max-width: 324px;
+  }
+
+  &__firstBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__itemImage {
+    width: 56px;
+    height: 56px;
+    border-radius: var.$border-radius;
+
+    @include mixins.on-desktop {
+      width: 64px;
+    height: 64px;
+    }
+  }
+
+  &__name {
+    color: var.$secondary-text-color;
+  }
+
+  &__quantity {
+    color: var.$secondary-text-color;
+  }
+
+  &__deleteButton {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0px 0px 4px 0px #B0B0B033;
+    background: transparent;
+    cursor: pointer;
+
+    @include mixins.on-desktop {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__deleteIcon {
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: var.$details-color;
+    mask-image: url('/src/img/icons/trash.svg');
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+
+    @include mixins.on-desktop {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  margin-left: auto;
+  border-radius: var.$border-radius;
+  padding: 4px 24px;
+  width: 280px;
+  height: 48px;
+  background-color: var.$white-background-color;
+
+  @include mixins.on-tablet {
+    height: 40px;
+  }
+
+  @include mixins.on-desktop {
+    width: 420px;
+    height: 64px;
+    padding: 8px 40px;
+  }
+
+  &__text {
+    color: var.$light-grey-color;
+  }
+
+  &__button {
+    font-family: inherit;
+    width: 120px;
+    height: 40px;
+    border-radius: var.$border-radius;
+    color: var.$background-color;
+    background-color: var.$primary-accent-color;
+    border: none;
+
+    @include mixins.on-tablet {
+      height: 32px;
+      width: 96px;
+    }
+    @include mixins.on-desktop {
+      height: 48px;
+      width: 200px;
+    }
+  }
+}
+

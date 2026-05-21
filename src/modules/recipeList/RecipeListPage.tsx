@@ -13,6 +13,7 @@ import type { FilterPower } from "../../shared/types/FilterPower";
 import type { FilterType } from "../../shared/types/FilterType";
 import type { FilterTime } from "../../shared/types/FilterTime";
 import type { FilterComplexity } from "../../shared/types/FilterComplexity";
+import { useLocation } from "react-router-dom";
 
 export const RecipeListPage = () => {
   const { recipes, loading, errorMessage } = useContext(RecipesContext);
@@ -20,6 +21,8 @@ export const RecipeListPage = () => {
   const [typeFilter, setTypeFilter] = useState<FilterType>('all');
   const [timeFilter, setTimeFilter] = useState<FilterTime>('all');
   const [complexityFilter, setComplexityFilter] = useState<FilterComplexity>('all');
+  const location = useLocation();
+  const pathname = location.pathname;
 
   const getFilteredRecipes = () => {
     return recipes.filter(recipe => {
@@ -82,7 +85,7 @@ export const RecipeListPage = () => {
       )}
       
       {!loading && !errorMessage && visibleRecipes.length === 0 && recipes.length > 0 && (
-        <NoResults />
+        <NoResults pathname={pathname} />
       )}
     </div>
   );

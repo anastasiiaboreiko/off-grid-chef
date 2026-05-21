@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from './RecipeDetailsPage.module.scss';
 import { RecipesContext } from "../../shared/context/RecipesContext";
 import { useParams } from "react-router-dom";
@@ -10,12 +10,14 @@ import { FavoriteButton } from "../../shared/ui/buttons/favoriteButton/FavoriteB
 import { TimeDetails } from "../../shared/ui/timeDetails/TimeDetails";
 import { BackButton } from "../../shared/ui/buttons/backButton/BackButton";
 import { useDeviceType } from "../../shared/hooks/useDeviceType";
+import { addRecipeToCart } from "../../shared/api/apiCart";
 
 export const RecipeDetailsPage = () => {
   const { recipes } = useContext(RecipesContext);
   const { recipeId } = useParams<{ recipeId?: string }>();
   const { isMobile } = useDeviceType();
-  // const navigate = useNavigate();
+
+  const [cartMessage, setCartMessage] = useState('')
 
   const currentRecipe = recipeId
     ? recipes.find(recipe => recipe.id === Number(recipeId))
@@ -25,10 +27,42 @@ export const RecipeDetailsPage = () => {
 
   const recipeInstructions = currentRecipe?.instructions;
 
-  console.log('recipeInstructions: ', recipeInstructions);
-
   const removeStepNumber = (value: string) =>
     value.replace(/^\d+\.\s/, "");
+
+  const handleAddToCart = async () => {
+    setCartMessage('');
+    const accessToken = localStorage.getItem('accessToken');
+
+    if (!currentRecipe || !accessToken) {
+      return;
+    }
+
+    try {
+      const result = await addRecipeToCart(currentRecipe.id, accessToken);
+      if (result.added_items > 0) {
+        setCartMessage('Ingredients added to cart.');
+      } else {
+        setCartMessage('These ingredients are already in your cart.');
+      }
+    } catch {
+      setCartMessage('Failed to add ingredients to cart.');
+    }
+  };
+
+  useEffect(() => {
+    if(!cartMessage) {
+      return; 
+    }
+
+    const timerId = window.setTimeout(() => {
+      setCartMessage('');
+    }, 5000);
+
+    return () => {
+      window.clearTimeout(timerId);
+    };
+  }, [cartMessage]);
 
   return (
     <div className={styles.container}>
@@ -105,9 +139,19 @@ export const RecipeDetailsPage = () => {
                 <span className={styles.buttonInfo__icon} />
               </div>
               
-              <button className={`button-text ${styles.buttonAddToCart}`}>
+              <button 
+                className={`button-text ${styles.buttonAddToCart}`}
+                onClick={handleAddToCart}
+              >
                 Add to cart
-              </button>
+              </button> 
+              {cartMessage && (
+                <div className={styles.ingredients__toast}>
+                  <p className={`small-text ${styles.ingredients__message}`}>
+                    {cartMessage}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

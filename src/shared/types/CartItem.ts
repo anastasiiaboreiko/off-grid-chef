@@ -1,0 +1,11 @@
+import type { Recipe, IngredientType } from "./Recipe";
+
+export type CartItem = {
+  id: number;
+  recipe: Recipe['id'];
+  recipe_title: Recipe['title'];
+  ingredient: IngredientType['id'];
+  ingredient_name: IngredientType['name'];
+  quantity: IngredientType['quantity'];
+  unit: IngredientType['unit'];
+}

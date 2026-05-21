@@ -2,6 +2,9 @@
 
 .favotites {
   padding: 16px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 
   @include mixins.on-tablet {
     padding: 24px;
