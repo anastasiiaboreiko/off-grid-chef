@@ -8,8 +8,6 @@ type Props = {
 
 export const PowerDetails: React.FC<Props> = ({ recipe }) => {
   const powerStatus = recipe.category;
-
-  console.log('powerStatus: ', powerStatus);
   
   return (
     <div className={styles.power}>
