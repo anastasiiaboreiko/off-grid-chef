@@ -5,24 +5,16 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  height: 32px;
-  width: 53px;
+  height: 40px;
+  width: 72px;
   font-family: inherit;
-  // margin-bottom: 32px;
-  background-color: var.$background-color;
+  background-color: var.$white-background-color;
   border-radius: var.$border-radius;
   border: 1px solid #FEEFE6;
-
-  @include mixins.on-tablet {
-    height: 40px;
-    width: 73px;
-    margin-bottom: 16px;
-  }
 
   @include mixins.on-desktop {
     height: 48px;
     width: 96px;
-    margin-bottom: 32px;
   }
 
   &__hidden {
@@ -34,7 +26,7 @@
     width: 12px;
     height: 12px;
 
-    mask-image: url('/src/img/icons/arrowLeft.svg');
+    mask-image: url('../../../../img/icons/arrowLeft.svg');
     mask-size: contain;
     mask-repeat: no-repeat;
 

@@ -4,16 +4,14 @@
 h1 {
   color: var.$primary-text-color;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 26px;
   line-height: 140%;
   letter-spacing: 0%;
-
 
   @include mixins.on-tablet {
     font-size: 28px;
     line-height: 130%;
     font-weight: 500;
-
   }
 
   @include mixins.on-desktop {
@@ -25,8 +23,7 @@ h1 {
 
 h2 {
   font-weight: 500;
-  // font-size: 16px;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 120%;
   letter-spacing: 0%;
 
@@ -66,7 +63,6 @@ h3 {
 h4 {
   font-weight: 500;
   font-size: 14px;
-  // font-size: 24px;
   line-height: 120%;
   letter-spacing: 0%;
 
@@ -104,6 +100,30 @@ h4 {
     font-size: 16px;
     line-height: 120%;
     letter-spacing: 0%;
+  }
+}
+
+.secondary-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  text-align: center;
+
+  @include mixins.on-tablet {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+ 
+  @include mixins.on-desktop {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    text-align: center;
   }
 }
 

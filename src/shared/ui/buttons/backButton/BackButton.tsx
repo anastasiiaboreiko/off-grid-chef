@@ -1,18 +1,21 @@
-import { useMatch, useNavigate } from "react-router-dom";
 import styles from './BackButton.module.scss';
 
-export const BackButton = () => {
-  const navigate = useNavigate();
-  const isRecipeDetailesPage = Boolean(useMatch('/recipes/:recipeId'))
+type Props = {
+  onClick: () => void;
+  isHidden?: boolean;
+  className?: string;
+}
 
+export const BackButton = ({ onClick, isHidden = false, className = '' }: Props) => {
   return (
     <button 
       type="button"
       className={`
         ${styles.backButton}
-        ${!isRecipeDetailesPage ? styles.backButton__hidden : ''}
+        ${isHidden ? styles.backButton__hidden : ''}
+        ${className}
       `}
-      onClick={() => {navigate('/')}}
+      onClick={onClick}
     >
       <span className={styles.backButton__icon} />
       <p className={`button-text ${styles.backButton__title}`}>Back</p>

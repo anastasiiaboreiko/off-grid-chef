@@ -3,26 +3,17 @@
 
 .logo {
   display: flex;
-  // padding: 10px;
-  width: 110px;
 
-  @include mixins.on-tablet {
-    display: block;
-    width: 32px;
-  }
-
-  @include mixins.on-desktop {
-    width: 192px;
-  }
-
-  &__open {
-    @include mixins.on-tablet {
-      width: 110px;
-    }
-
+  &__default {
+    width: 110px;
+  
     @include mixins.on-desktop {
       width: 192px;
     }
   }
-
+  
+  &__compact {
+    width: 32px;
+    height: 32px;
+  }
 }

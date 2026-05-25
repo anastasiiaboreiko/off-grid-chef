@@ -1313,7 +1313,7 @@
   "pk": 2,
   "fields": {
     "title": "Tuna & Bean Salad",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy0IDqaP0V7Dc1RoH9PJpOO_hoCL4K-p2YBw&s",
+    "image_url": "https://cdn11.bigcommerce.com/s-cjh14ahqln/product_images/uploaded_images/tunacannellinibeansalad-1-web.jpg",
     "category": "no_light",
     "type_of_dish": "lunch",
     "cooking_time": 10,
@@ -1427,7 +1427,8 @@
     "recipe_id": 1,
     "name": "Avocado",
     "quantity": 1.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Avocado.png"
   }
 },
 {
@@ -1437,7 +1438,8 @@
     "recipe_id": 1,
     "name": "Whole grain bread slice",
     "quantity": 2.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Bread.png"
   }
 },
 {
@@ -1447,7 +1449,8 @@
     "recipe_id": 2,
     "name": "Canned Tuna (in oil or water)",
     "quantity": 1.0,
-    "unit": "can"
+    "unit": "can",
+    "image": "https://www.themealdb.com/images/ingredients/Tuna.png"
   }
 },
 {
@@ -1457,7 +1460,8 @@
     "recipe_id": 2,
     "name": "Canned White Beans (cannellini)",
     "quantity": 240.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Cannellini%20Beans.png"
   }
 },
 {
@@ -1467,7 +1471,8 @@
     "recipe_id": 1,
     "name": "Lemon juice",
     "quantity": 10.0,
-    "unit": "ml"
+    "unit": "ml",
+    "image": "https://www.themealdb.com/images/ingredients/Lemon.png"
   }
 },
 {
@@ -1477,7 +1482,8 @@
     "recipe_id": 1,
     "name": "Salt and Pepper",
     "quantity": 1.0,
-    "unit": "pinch"
+    "unit": "pinch",
+    "image": "https://www.themealdb.com/images/ingredients/Salt.png"
   }
 },
 {
@@ -1487,7 +1493,8 @@
     "recipe_id": 1,
     "name": "Olive oil",
     "quantity": 5.0,
-    "unit": "ml"
+    "unit": "ml",
+    "image": "https://www.themealdb.com/images/ingredients/Olive%20Oil.png"
   }
 },
 {
@@ -1497,7 +1504,8 @@
     "recipe_id": 2,
     "name": "Red Onion (small)",
     "quantity": 0.5,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Red%20Onion.png"
   }
 },
 {
@@ -1507,7 +1515,8 @@
     "recipe_id": 2,
     "name": "Fresh Parsley",
     "quantity": 10.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Parsley.png"
   }
 },
 {
@@ -1517,7 +1526,8 @@
     "recipe_id": 2,
     "name": "Vinegar or Lemon Juice",
     "quantity": 15.0,
-    "unit": "ml"
+    "unit": "ml",
+    "image": "https://www.themealdb.com/images/ingredients/Vinegar.png"
   }
 },
 {
@@ -1527,7 +1537,8 @@
     "recipe_id": 2,
     "name": "Black Pepper",
     "quantity": 1.0,
-    "unit": "pinch"
+    "unit": "pinch",
+    "image": "https://www.themealdb.com/images/ingredients/Black%20Pepper.png"
   }
 },
 {
@@ -1537,7 +1548,8 @@
     "recipe_id": 3,
     "name": "Rolled Oats",
     "quantity": 50.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Rolled%20Oats.png"
   }
 },
 {
@@ -1547,7 +1559,8 @@
     "recipe_id": 3,
     "name": "Milk",
     "quantity": 150.0,
-    "unit": "ml"
+    "unit": "ml",
+    "image": "https://www.themealdb.com/images/ingredients/Milk.png"
   }
 },
 {
@@ -1557,7 +1570,8 @@
     "recipe_id": 3,
     "name": "Chia seeds",
     "quantity": 10.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Sesame%20Seed.png"
   }
 },
 {
@@ -1567,7 +1581,8 @@
     "recipe_id": 3,
     "name": "Honey",
     "quantity": 10.0,
-    "unit": "ml"
+    "unit": "ml",
+    "image": "https://www.themealdb.com/images/ingredients/Honey.png"
   }
 },
 {
@@ -1577,7 +1592,8 @@
     "recipe_id": 3,
     "name": "Berries",
     "quantity": 30.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Blueberries.png"
   }
 },
 {
@@ -1587,7 +1603,8 @@
     "recipe_id": 4,
     "name": "Tortilla wrap",
     "quantity": 1.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Tortillas.png"
   }
 },
 {
@@ -1597,7 +1614,8 @@
     "recipe_id": 4,
     "name": "Hummus",
     "quantity": 50.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Hummus.png"
   }
 },
 {
@@ -1607,7 +1625,8 @@
     "recipe_id": 4,
     "name": "Cucumber",
     "quantity": 0.5,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Cucumber.png"
   }
 },
 {
@@ -1617,7 +1636,8 @@
     "recipe_id": 4,
     "name": "Red Bell Pepper",
     "quantity": 0.5,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Red%20Pepper.png"
   }
 },
 {
@@ -1627,7 +1647,8 @@
     "recipe_id": 4,
     "name": "Baby spinach",
     "quantity": 20.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Spinach.png"
   }
 },
 {
@@ -1637,7 +1658,8 @@
     "recipe_id": 5,
     "name": "Eggs",
     "quantity": 3.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Eggs.png"
   }
 },
 {
@@ -1647,7 +1669,8 @@
     "recipe_id": 6,
     "name": "Parmesan Cheese",
     "quantity": 50.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Parmesan.png"
   }
 },
 {
@@ -1657,7 +1680,8 @@
     "recipe_id": 6,
     "name": "Black Pepper",
     "quantity": 1.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Black%20Pepper.png"
   }
 },
 {
@@ -1667,7 +1691,8 @@
     "recipe_id": 5,
     "name": "Cheddar Cheese",
     "quantity": 50.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Cheddar%20Cheese.png"
   }
 },
 {
@@ -1677,7 +1702,8 @@
     "recipe_id": 5,
     "name": "Butter",
     "quantity": 15.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Butter.png"
   }
 },
 {
@@ -1687,7 +1713,8 @@
     "recipe_id": 5,
     "name": "Salt and Pepper",
     "quantity": 1.0,
-    "unit": "pinch"
+    "unit": "pinch",
+    "image": "https://www.themealdb.com/images/ingredients/Salt.png"
   }
 },
 {
@@ -1697,7 +1724,8 @@
     "recipe_id": 6,
     "name": "Spaghetti",
     "quantity": 200.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Spaghetti.png"
   }
 },
 {
@@ -1707,7 +1735,8 @@
     "recipe_id": 6,
     "name": "Bacon",
     "quantity": 100.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Bacon.png"
   }
 },
 {
@@ -1717,7 +1746,8 @@
     "recipe_id": 6,
     "name": "Eggs",
     "quantity": 2.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Eggs.png"
   }
 },
 {
@@ -1727,7 +1757,8 @@
     "recipe_id": 6,
     "name": "Parmesan Cheese",
     "quantity": 50.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Parmesan.png"
   }
 },
 {
@@ -1737,7 +1768,8 @@
     "recipe_id": 6,
     "name": "Black Pepper",
     "quantity": 1.0,
-    "unit": "pinch"
+    "unit": "pinch",
+    "image": "https://www.themealdb.com/images/ingredients/Black%20Pepper.png"
   }
 },
 {
@@ -1747,7 +1779,8 @@
     "recipe_id": 7,
     "name": "Arborio Rice",
     "quantity": 300.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Rice.png"
   }
 },
 {
@@ -1757,7 +1790,8 @@
     "recipe_id": 7,
     "name": "Mushrooms",
     "quantity": 400.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Mushrooms.png"
   }
 },
 {
@@ -1767,7 +1801,8 @@
     "recipe_id": 7,
     "name": "Onion",
     "quantity": 1.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Onion.png"
   }
 },
 {
@@ -1777,7 +1812,8 @@
     "recipe_id": 7,
     "name": "White Wine",
     "quantity": 100.0,
-    "unit": "ml"
+    "unit": "ml",
+    "image": "https://www.themealdb.com/images/ingredients/White%20Wine.png"
   }
 },
 {
@@ -1787,7 +1823,8 @@
     "recipe_id": 7,
     "name": "Parmesan Cheese",
     "quantity": 50.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Parmesan.png"
   }
 },
 {
@@ -1797,7 +1834,8 @@
     "recipe_id": 7,
     "name": "Butter",
     "quantity": 40.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Butter.png"
   }
 },
 {
@@ -1807,7 +1845,8 @@
     "recipe_id": 7,
     "name": "Garlic cloves",
     "quantity": 2.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Garlic.png"
   }
 },
 {
@@ -1817,7 +1856,8 @@
     "recipe_id": 7,
     "name": "Fresh Thyme",
     "quantity": 5.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Thyme.png"
   }
 },
 {
@@ -1827,7 +1867,8 @@
     "recipe_id": 8,
     "name": "Salmon Fillets",
     "quantity": 2.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Salmon.png"
   }
 },
 {
@@ -1837,7 +1878,8 @@
     "recipe_id": 8,
     "name": "Lemon",
     "quantity": 1.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Lemon.png"
   }
 },
 {
@@ -1847,7 +1889,8 @@
     "recipe_id": 8,
     "name": "Olive Oil",
     "quantity": 20.0,
-    "unit": "ml"
+    "unit": "ml",
+    "image": "https://www.themealdb.com/images/ingredients/Olive%20Oil.png"
   }
 },
 {
@@ -1857,7 +1900,8 @@
     "recipe_id": 8,
     "name": "Garlic",
     "quantity": 2.0,
-    "unit": "cloves"
+    "unit": "cloves",
+    "image": "https://www.themealdb.com/images/ingredients/Garlic.png"
   }
 },
 {
@@ -1867,7 +1911,8 @@
     "recipe_id": 8,
     "name": "Dried Dill or Parsley",
     "quantity": 5.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Dill.png"
   }
 },
 {
@@ -1877,7 +1922,8 @@
     "recipe_id": 8,
     "name": "Salt and Black Pepper",
     "quantity": 1.0,
-    "unit": "pinch"
+    "unit": "pinch",
+    "image": "https://www.themealdb.com/images/ingredients/Black%20Pepper.png"
   }
 },
 {
@@ -1887,7 +1933,8 @@
     "recipe_id": 9,
     "name": "Beef Steak",
     "quantity": 300.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Beef.png"
   }
 },
 {
@@ -1897,7 +1944,8 @@
     "recipe_id": 9,
     "name": "Broccoli florets",
     "quantity": 200.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Broccoli.png"
   }
 },
 {
@@ -1907,7 +1955,8 @@
     "recipe_id": 9,
     "name": "Soy Sauce",
     "quantity": 40.0,
-    "unit": "ml"
+    "unit": "ml",
+    "image": "https://www.themealdb.com/images/ingredients/Soy%20Sauce.png"
   }
 },
 {
@@ -1917,7 +1966,8 @@
     "recipe_id": 9,
     "name": "Vegetable Oil",
     "quantity": 15.0,
-    "unit": "ml"
+    "unit": "ml",
+    "image": "https://www.themealdb.com/images/ingredients/Vegetable%20Oil.png"
   }
 },
 {
@@ -1927,7 +1977,8 @@
     "recipe_id": 9,
     "name": "Fresh Ginger",
     "quantity": 10.0,
-    "unit": "g"
+    "unit": "g",
+    "image": "https://www.themealdb.com/images/ingredients/Ginger.png"
   }
 },
 {
@@ -1937,7 +1988,8 @@
     "recipe_id": 9,
     "name": "Red Bell Pepper",
     "quantity": 1.0,
-    "unit": "pcs"
+    "unit": "pcs",
+    "image": "https://www.themealdb.com/images/ingredients/Red%20Pepper.png"
   }
 },
 {

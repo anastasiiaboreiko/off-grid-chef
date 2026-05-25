@@ -1,0 +1,26 @@
+@use '../../../styles/var.scss';
+@use '../../../styles/mixins.scss';
+
+.closeButton {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background-color: var.$secondary-text-color;
+    mask-image: url('../../../../img/icons/close.svg');
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+
+    @include mixins.on-desktop {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

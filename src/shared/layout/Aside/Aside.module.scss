@@ -2,19 +2,15 @@
 @use '../../styles/mixins.scss';
 
 .sidebar {
-  // height: 100vh;
   position: fixed;
   height: calc(100vh - var.$mobileHeaderHeight - var.$mobileFooterHeight);
-  // overflow: hidden;
   width: 100%;
 
   top: var.$mobileHeaderHeight;
-  // top: 0;
   right: 0;
   bottom: var.$mobileFooterHeight;
   transform: translateX(100%);
   transition: transform 0.3s ease;
-  // z-index: 10;
   display: flex;
   flex-direction: column;
  
@@ -92,8 +88,6 @@
 
   &__activeLink {
     display: flex;
-    // flex-direction: column;
- 
     text-decoration: none;
     gap: 12px;
     color: var.$primary-accent-color;
@@ -102,7 +96,6 @@
     align-items: center;
 
     @include mixins.on-tablet {
-      // flex-direction: row;
       justify-content: start;
       gap: 12px;
     }
@@ -113,23 +106,22 @@
 
     .sidebar__iconHome {
       background-color: var.$primary-accent-color;
-      mask-image: url('src/img/icons/home-filled.svg');
+      mask-image: url('../../../img/icons/home-filled.svg');
     }
 
     .sidebar__iconCart {
       background-color: var.$primary-accent-color;
-      mask-image: url('src/img/icons/cart-filled.svg');
+      mask-image: url('../../../img/icons/cart-filled.svg');
     }
 
     .sidebar__iconFavorite {
       background-color: var.$primary-accent-color;
-      mask-image: url('src/img/icons/heart-filled.svg');
+      mask-image: url('../../../img/icons/heart-filled.svg');
     }
   }
 
   &__link {
     display: flex;
-    // flex-direction: column;
     text-decoration: none;
     gap: 12px;
     color: #ABABAC;
@@ -138,7 +130,6 @@
     align-items: center;
 
     @include mixins.on-tablet {
-      // flex-direction: row;
       justify-content: start;
       gap: 12px;
     }
@@ -148,26 +139,12 @@
     }
   }
 
-  // &__count {
-  //   background-color: var.$primary-accent-color;
-  //   color: var.$secondary-text-color;
-  //   border-radius: 50%;
-  //   width: 24px;
-  //   height: 24px;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   font-size: 12px;
-  //   font-weight: bold;
-  // }
-
   &__iconHome {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
-    // justify-content: center;
 
-    mask-image: url('src/img/icons/home-light.svg');
+    mask-image: url('../../../img/icons/home-light.svg');
     mask-size: contain;
     background-color: var.$light-grey-color;
 
@@ -183,7 +160,7 @@
     height: 24px;
     flex-shrink: 0;
 
-    mask-image: url('src/img/icons/cart-light.svg');
+    mask-image: url('../../../img/icons/cart-light.svg');
     mask-size: contain;
     background-color: var.$light-grey-color;
 
@@ -199,7 +176,7 @@
     height: 24px;
     flex-shrink: 0;
 
-    mask-image: url('src/img/icons/heart-light.svg');
+    mask-image: url('../../../img/icons/heart-light.svg');
     mask-size: contain;
     background-color: var.$light-grey-color;
 
@@ -241,12 +218,6 @@
       opacity: 1;
     }
   }
-
-  // &__open &__title {
-  //   @include mixins.on-tablet {
-  //     display: block;
-  //   }
-  // }
 
   &__footer {
     display: flex;
@@ -291,7 +262,7 @@
     width: 24px;
     height: 24px;
 
-    mask-image: url('src/img/icons/exit.svg');
+    mask-image: url('../../../img/icons/exit.svg');
     mask-size: contain;
 
     background-color: var.$secondary-text-color;
@@ -303,7 +274,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // width: 240px;
   height: 40px;
   padding-inline: 8px;
   gap: 8px;
@@ -327,7 +297,7 @@
     width: 24px;
     height: 24px;
 
-    mask-image: url('src/img/icons/user.svg');
+    mask-image: url('../../../img/icons/user.svg');
     mask-size: contain;
     mask-repeat: no-repeat;
 
@@ -346,7 +316,6 @@
   }
 
   &__name {
-    // width: 136px;
     color: var.$secondary-text-color;
 
     @include mixins.on-tablet {
@@ -364,7 +333,7 @@
     width: 16px;
     height: 16px;
 
-    mask-image: url('src/img/icons/arrow-up.svg');
+    mask-image: url('../../../img/icons/arrow-up.svg');
     mask-size: contain;
     mask-repeat: no-repeat;
 
@@ -391,7 +360,6 @@
   .user {
     @include mixins.on-tablet {
       width: 148px;
-      // justify-content: space-between;
     }
     
     @include mixins.on-desktop{
@@ -407,5 +375,4 @@
     }
   }
 }
-
 

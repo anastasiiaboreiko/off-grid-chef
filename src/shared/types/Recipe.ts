@@ -13,6 +13,7 @@ export type IngredientType = {
   name: string;
   quantity: number;
   unit: IngredientUnit;
+  image: string;
 };
 
 export type IngredientUnit =

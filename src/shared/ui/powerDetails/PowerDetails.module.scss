@@ -5,12 +5,16 @@
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline: 8px;
+  padding-inline: 4px;
   max-width: 150px;
   height: 24px;
   background-color: var.$white-background-color;
   border-radius: var.$border-radius;
   border: 1px solid #FEEFE6;
+
+  @include mixins.on-tablet {
+    padding-inline: 8px;
+  }
 
   @include mixins.on-desktop {
     height: 30px;
@@ -20,7 +24,7 @@
     width: 16px;
     height: 16px;
 
-    mask-image: url('/src/img/icons/power.svg');
+    mask-image: url('../../../img/icons/power.svg');
     mask-size: cover;
 
     background-color: var.$primary-accent-color;
@@ -35,7 +39,7 @@
     width: 16px;
     height: 16px;
 
-    mask-image: url('/src/img/icons/no-light.svg');
+    mask-image: url('../../../img/icons/no-light.svg');
     mask-size: cover;
 
     background-color: var.$primary-accent-color;
@@ -48,6 +52,6 @@
 
   &__title {
     color: var.$primary-accent-color;
-    padding-left: 4px;
+    // padding-left: 4px;
   }
 }

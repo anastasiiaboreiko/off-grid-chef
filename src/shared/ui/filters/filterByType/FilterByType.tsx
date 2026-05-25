@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { FilterType } from "../../../types/FilterType";
 import styles from './FilterByType.module.scss';
+import { ArrowOpen } from "../../buttons/arrowOpen";
 
 type Props = {
   value: FilterType;
@@ -15,7 +16,7 @@ const options: { value: FilterType; label: string }[] = [
 ];
 
 export const FilterByType: React.FC<Props> = ({ value, onChange }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isArrowOpen, setIsArrowOpen] = useState<boolean>(false);
   const selectRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export const FilterByType: React.FC<Props> = ({ value, onChange }) => {
         selectRef.current && 
         !selectRef.current.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        setIsArrowOpen(false);
       }
     };
 
@@ -41,27 +42,23 @@ export const FilterByType: React.FC<Props> = ({ value, onChange }) => {
       <div className={styles.selectWrapper} ref={selectRef}>
         <div 
            className={styles.select}
-           onClick={() => setIsOpen(prev => !prev)}
+           onClick={() => setIsArrowOpen(prev => !prev)}
         >
           <span className={`body-text ${styles.value}`}>
             {options.find(option => option.value === value)?.label}
           </span>
 
-          <img
-            src="src/img/icons/arrow-down.svg"
-            alt="arrow"
-            className={isOpen ? styles.arrowOpen : styles.arrow}
-          />
+          <ArrowOpen isArrowOpen={isArrowOpen} />
         </div>
 
-        {isOpen && (
+        {isArrowOpen && (
           <ul className={styles.dropdown}>
             {options.map(option => (
               <li
                 key={option.value}
                 onClick={() => {
                   onChange(option.value);
-                  setIsOpen(false);
+                  setIsArrowOpen(false);
                 }}
                 className={`body-text ${styles.listItem}`}
               >

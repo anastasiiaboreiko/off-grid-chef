@@ -1,30 +1,45 @@
 @use '../../styles/var.scss';
+@use '../../styles/mixins.scss';
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
-  text-align: center;
-  background-color: var.$background-color;
-  border-radius: var.$border-radius;
-  margin-top: 40px;
-  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-color: var.$primary-accent-color;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.favoriteIcon {
+  mask-image: url('../../../img/icons/heart-light.svg');
+}
+
+.cartIcon {
+  mask-image: url('../../../img/icons/cart-light.svg');
 }
 
 .title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 24px;
-  font-weight: 600;
+  padding-block: 8px 4px;
   color: var.$secondary-text-color;
-  margin-bottom: 12px;
 }
 
-.message {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 16px;
-  color: var.$primary-text-color;
-  max-width: 400px;
-  line-height: 1.5;
+.subTitle {
+  text-align: center;
+  color: var.$light-grey-color;
+  width: 116px;
+
+  @include mixins.on-desktop {
+    width: 144px;
+  }
+  
 }

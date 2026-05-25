@@ -1,0 +1,89 @@
+@use '../../../styles/var.scss';
+@use '../../../styles/mixins.scss';
+
+.myInfo {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  gap: 24px;
+
+  @include mixins.on-desktop {
+    gap: 32px;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var.$light-grey-color;
+
+    @include mixins.on-desktop {
+      gap: 16px;
+    }
+  }
+
+  &__mobilePhone {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__input {
+    font-family: inherit;
+    height: 40px;
+    width: 100%;
+    padding-inline: 16px;
+    border: 1px solid transparent;
+    border-radius: var.$border-radius;
+    outline: none;
+    background-color: var.$input-background-color;
+    color: var.$secondary-text-color;
+
+    @include mixins.on-desktop {
+      height: 56px;
+    }
+
+    &::placeholder {
+      color: var.$details-color;
+    }
+
+    &:focus,
+    &:focus-visible {
+      border-color: var.$primary-accent-color;
+    }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
+      -webkit-text-fill-color: var.$primary-text-color;
+    }
+  
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
+      -webkit-text-fill-color: var.$primary-text-color;
+      border-color: var.$primary-accent-color;
+    }
+  }
+
+  &__select {
+    width: 76px;
+    font-family: inherit;
+    height: 40px;
+    padding-inline: 16px;
+    padding-right: 28px;
+    border: 1px solid transparent;
+    border-radius: var.$border-radius;
+    outline: none;
+    background-color: var.$input-background-color;
+    color: var.$secondary-text-color;
+
+    appearance: none;
+    background-image: url('../../../../img/icons/arrow-down.svg');
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-position: right 12px center;
+
+    @include mixins.on-desktop {
+      width: 107px;
+    }
+  }
+
+}

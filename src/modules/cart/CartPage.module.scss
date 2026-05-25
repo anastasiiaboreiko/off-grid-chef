@@ -1,7 +1,89 @@
-.cart {
-  padding: 30px;
+@use '../../shared/styles/var.scss';
+@use '../../shared/styles/mixins.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-block: 16px 24px;
+  min-height: 100%;
+  max-width: var.$content-max-width - 320px;
+
+  @include mixins.on-tablet {
+    padding-block: 24px 40px;
+  }
+
+  @include mixins.on-desktop {
+    padding-block: 32px 40px;
+  }
 }
 
-.title {
-  font-weight: 400;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+  
+  @include mixins.on-desktop {
+    padding-bottom: 32px;
+  }
+
+  &__button {
+    font-family: inherit;
+    color: var.$secondary-text-color;
+    text-decoration: underline;
+    border: none;
+    background-color: transparent;
+  }
 }
+
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.cartList {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 32px;
+  
+
+  @include mixins.on-tablet {
+    grid-template-columns: repeat(2, minmax(308px, 1fr));
+    gap: 16px;
+  }
+
+  @include mixins.on-desktop {
+    grid-template-columns: repeat(3, minmax(278px, 324px));
+    gap: 16px 32px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  margin-left: auto;
+  border-radius: var.$border-radius;
+  padding: 4px 24px;
+  width: 280px;
+  height: 48px;
+  background-color: var.$white-background-color;
+
+  @include mixins.on-tablet {
+    height: 40px;
+  }
+
+  @include mixins.on-desktop {
+    width: 420px;
+    height: 64px;
+    padding: 8px 40px;
+  }
+
+  &__text {
+    color: var.$light-grey-color;
+  }
+}
+
