@@ -1,4 +1,5 @@
 import styles from './ArrowOpen.module.scss';
+import arrowDownIcon from '../../../../img/icons/arrow-down.svg';
 
 type Props = {
   isArrowOpen: boolean;
@@ -7,7 +8,7 @@ type Props = {
 export const ArrowOpen = ({ isArrowOpen }: Props) => {
   return (
     <img
-      src="src/img/icons/arrow-down.svg"
+      src={arrowDownIcon}
       alt="arrow"
       className={`
         ${styles.arrow}

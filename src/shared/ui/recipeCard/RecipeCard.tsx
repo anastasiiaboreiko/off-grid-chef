@@ -5,6 +5,7 @@ import { PowerDetails } from "../powerDetails/PowerDetails";
 import { ComplexityDetails } from "../complexityDetails/ComplexityDetails";
 import { FavoriteButton } from "../buttons/favoriteButton/FavoriteButton";
 import { TimeDetails } from "../timeDetails/TimeDetails";
+import placeholderImage from "../../../img/placeholder.svg";
 
 type Props= {
   recipe: Recipe;
@@ -21,7 +22,7 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
         <div className={styles.pictureBlock}>
           <img
             className={styles.pictureBlock__picture}
-            src={recipe.image_url ?? '/placeholder.png'}
+            src={recipe.image_url ?? placeholderImage}
             alt={recipe.title}
           />
 

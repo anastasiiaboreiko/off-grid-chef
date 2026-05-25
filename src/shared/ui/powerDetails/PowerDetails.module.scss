@@ -24,7 +24,7 @@
     width: 16px;
     height: 16px;
 
-    mask-image: url('/src/img/icons/power.svg');
+    mask-image: url('../../../img/icons/power.svg');
     mask-size: cover;
 
     background-color: var.$primary-accent-color;
@@ -39,7 +39,7 @@
     width: 16px;
     height: 16px;
 
-    mask-image: url('/src/img/icons/no-light.svg');
+    mask-image: url('../../../img/icons/no-light.svg');
     mask-size: cover;
 
     background-color: var.$primary-accent-color;
