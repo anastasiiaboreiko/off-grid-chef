@@ -3,7 +3,7 @@
 
 .container {
   @include mixins.content-padding-inline;
-  padding-block: 16px;
+  padding-bottom: 16px;
   max-width: 1120px;
   margin-left: 0;
 
@@ -55,7 +55,7 @@
 
 .addFilters {
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   justify-content: space-between;
   width: 100%;
   gap: 16px;
