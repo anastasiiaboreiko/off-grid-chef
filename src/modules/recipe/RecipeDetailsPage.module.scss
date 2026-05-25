@@ -219,9 +219,13 @@
 
   &__toast {
     position: absolute;
-    bottom: -20px;
+    bottom: -15px;
     right: 0;
     display: flex;
+
+    @include mixins.on-desktop {
+      bottom: -20px;
+    }
   }
 
   &__message {
