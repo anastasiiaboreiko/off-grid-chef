@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styles from './RecipeDetailsPage.module.scss';
 import { RecipesContext } from "../../shared/context/RecipesContext";
-import { useParams } from "react-router-dom";
+import { useMatch, useNavigate, useParams } from "react-router-dom";
 import { PowerDetails } from "../../shared/ui/powerDetails/PowerDetails";
 import { ComplexityDetails } from "../../shared/ui/complexityDetails/ComplexityDetails";
 import { TypeDetails } from "../../shared/ui/typeDetails/TypeDetails";
@@ -18,6 +18,9 @@ export const RecipeDetailsPage = () => {
   const { isMobile } = useDeviceType();
 
   const [cartMessage, setCartMessage] = useState('')
+
+  const navigate = useNavigate();
+  const isRecipeDetailesPage = Boolean(useMatch('/recipes/:recipeId'))
 
   const currentRecipe = recipeId
     ? recipes.find(recipe => recipe.id === Number(recipeId))
@@ -66,7 +69,12 @@ export const RecipeDetailsPage = () => {
 
   return (
     <div className={styles.container}>
-      {!isMobile && <BackButton />}
+      {!isMobile && (
+        <BackButton 
+          onClick={() => navigate('/')}
+          isHidden={!isRecipeDetailesPage}
+        />
+      )}
 
       <div className={styles.recipe}>
         <div className={styles.recipe__mainBlock}>

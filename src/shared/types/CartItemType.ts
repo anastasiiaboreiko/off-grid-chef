@@ -1,6 +1,6 @@
 import type { Recipe, IngredientType } from "./Recipe";
 
-export type CartItem = {
+export type CartItemType = {
   id: number;
   recipe: Recipe['id'];
   recipe_title: Recipe['title'];

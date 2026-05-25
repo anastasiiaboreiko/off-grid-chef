@@ -1,0 +1,121 @@
+@use '../../../styles/mixins.scss';
+@use '../../../styles/var.scss';
+
+.delivery {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  gap: 24px;
+
+  @include mixins.on-desktop {
+    gap: 32px;
+  }
+
+  &__line {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var.$light-grey-color;
+
+    &_city {
+      flex: 0 0 88px;
+
+      @include mixins.on-desktop {
+        flex: 0 0 126px;
+      }
+    }
+
+    &_street {
+      flex: 1;
+      min-width: 0;
+    }
+    
+
+    @include mixins.on-desktop {
+      gap: 16px;
+    }
+  }
+
+  &__input {
+    font-family: inherit;
+    height: 40px;
+    width: 100%;
+    padding-inline: 16px;
+    border: 1px solid transparent;
+    border-radius: var.$border-radius;
+    outline: none;
+    background-color: var.$input-background-color;
+    color: var.$secondary-text-color;
+
+    @include mixins.on-desktop {
+      height: 56px;
+    }
+
+    &::placeholder {
+      color: var.$details-color;
+    }
+
+    &:focus,
+    &:focus-visible {
+      border-color: var.$primary-accent-color;
+    }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
+      -webkit-text-fill-color: var.$primary-text-color;
+    }
+  
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
+      -webkit-text-fill-color: var.$primary-text-color;
+      border-color: var.$primary-accent-color;
+    }
+  }
+
+  &__textarea {
+    font-family: inherit;
+    height: 74px;
+    padding: 12px;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: var.$border-radius;
+    background-color: var.$input-background-color;
+    color: var.$secondary-text-color;
+    resize: none;
+
+    &::placeholder {
+      color: var.$details-color;
+      font-family: inherit;
+    }
+
+    &:focus,
+    &:focus-visible {
+      border-color: var.$primary-accent-color;
+    }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
+      -webkit-text-fill-color: var.$primary-text-color;
+    }
+  
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
+      -webkit-text-fill-color: var.$primary-text-color;
+      border-color: var.$primary-accent-color;
+    }
+
+    @include mixins.on-tablet {
+      width: 296px;
+    }
+
+    @include mixins.on-desktop {
+      height: 108px;
+      width: 440px;
+    }
+  }
+}

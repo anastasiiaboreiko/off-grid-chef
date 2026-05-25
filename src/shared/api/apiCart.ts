@@ -1,4 +1,4 @@
-import type { CartItem } from "../types/CartItem";
+import type { CartItemType } from "../types/CartItemType";
 const API_URL = import.meta.env.VITE_API_URL;
 
 type AddRecipeToCartResponse = {
@@ -25,7 +25,7 @@ export async function addRecipeToCart(
   return response.json();
 };
 
-export async function getCartItems(accessToken: string): Promise<CartItem[]> {
+export async function getCartItems(accessToken: string): Promise<CartItemType[]> {
   const response = await fetch(`${API_URL}/cart/`, {
     method: 'GET',
     headers: {

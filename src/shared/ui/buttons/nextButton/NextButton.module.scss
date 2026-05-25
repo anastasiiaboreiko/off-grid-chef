@@ -1,0 +1,22 @@
+@use '../../../styles/mixins.scss';
+@use '../../../styles/var.scss';
+
+.button {
+  width: 120px;
+  height: 40px;
+  border-radius: var.$border-radius;
+  border: none;
+  font-family: inherit;
+  color: var.$background-color;
+  background-color: var.$primary-accent-color;
+  margin-left: auto;
+
+  &:disabled {
+    background-color: var.$accent-disabled-color;
+  }
+
+  @include mixins.on-desktop {
+    width: 200px;
+    height: 48px;
+  }
+}
