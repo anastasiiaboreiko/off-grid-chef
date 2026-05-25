@@ -6,11 +6,15 @@
   align-items: center;
   justify-content: center;
   height: 24px;
-  width: 68px;
+  width: 52px;
   background-color: var.$white-background-color;
   border-radius: var.$border-radius;
   border: 1px solid #FEEFE6;
   gap: 4px;
+
+  @include mixins.on-tablet {
+    width: 68px;
+  }
 
   @include mixins.on-desktop {
     height: 30px;

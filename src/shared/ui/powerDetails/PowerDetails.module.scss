@@ -5,12 +5,16 @@
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline: 8px;
+  padding-inline: 4px;
   max-width: 150px;
   height: 24px;
   background-color: var.$white-background-color;
   border-radius: var.$border-radius;
   border: 1px solid #FEEFE6;
+
+  @include mixins.on-tablet {
+    padding-inline: 8px;
+  }
 
   @include mixins.on-desktop {
     height: 30px;
@@ -48,6 +52,6 @@
 
   &__title {
     color: var.$primary-accent-color;
-    padding-left: 4px;
+    // padding-left: 4px;
   }
 }
