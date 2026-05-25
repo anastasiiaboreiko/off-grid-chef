@@ -44,32 +44,6 @@
   color: var.$secondary-text-color;
 }
 
-.arrow {
-  position: absolute;
-  right: 16px;
-  width: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: transform 0.2s;
-
-  @include mixins.on-desktop {
-    width: 24px;
-  }
-}
-
-.arrowOpen {
-  position: absolute;
-  width: 16px;
-  right: 12px;
-
-  transform: rotate(180deg);
-
-  @include mixins.on-desktop {
-    width: 24px;
-  }
-}
-
 .dropdown {
   width: 100%;
   position: absolute;

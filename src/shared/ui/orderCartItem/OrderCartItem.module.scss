@@ -1,0 +1,46 @@
+@use '../../styles/mixins.scss';
+@use '../../styles/var.scss';
+
+.listItem {
+  position: relative;
+  list-style: none;
+  box-shadow: 0px 0px 4px 0px #B0B0B033;
+  border-radius: var.$border-radius;
+  background-color: var.$white-background-color;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 16px;
+
+  @include mixins.on-desktop {
+    width: 100%;
+    max-width: 324px;
+  }
+
+  &__firstBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__itemImage {
+    width: 48px;
+    height: 48px;
+    border-radius: var.$border-radius;
+
+    @include mixins.on-desktop {
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  &__name {
+    color: var.$secondary-text-color;
+  }
+
+  &__quantity {
+    white-space: nowrap;
+    color: var.$secondary-text-color;
+  }
+}

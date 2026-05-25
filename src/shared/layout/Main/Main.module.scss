@@ -5,8 +5,6 @@
   flex-direction: column;
   height: 100vh;
   overflow-y: auto; 
-  // overflow: hidden;
-  // min-width: 100vw; 
   min-width: 0;
 
   &__header { 
@@ -15,27 +13,24 @@
     align-items: center;
     flex-shrink: 0;
     height: var.$mobileHeaderHeight;
-    // background-color: var.$white-background-color;
     padding-inline: 16px;
   }
 
-  &__burgerMenu {
+  &__burgerMenuButton {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__burgerMenuIcon {
+    display: block;
     width: 32px;
     height: 32px;
-
     mask-image: url('/src/img/icons/burgerMenu.svg');
     mask-size: contain;
-
-    background-color: var.$secondary-text-color;
-  }
-
-  &__close {
-    width: 32px;
-    height: 32px;
-
-    mask-image: url('/src/img/icons/close.svg');
-    mask-size: contain;
-
+    mask-position: center;
+    mask-repeat: no-repeat;
     background-color: var.$secondary-text-color;
   }
 

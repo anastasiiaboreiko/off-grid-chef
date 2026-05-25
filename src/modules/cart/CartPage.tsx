@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import styles from './CartPage.module.scss';
-import type { CartItem } from "../../shared/types/CartItem";
+import type { CartItemType } from "../../shared/types/CartItemType";
 import { Loader } from "../../shared/ui/loader";
 import { getCartItems } from "../../shared/api/apiCart";
-import cartItemImage from "../../img/cartImage_2.png";
+
 import { NoResults } from "../../shared/ui/noResults";
 import { useLocation } from "react-router-dom";
+import { Modal } from "../../shared/ui/modal";
+import { OrderModal } from "./components/OrderModal";
+import { CartItem } from "../../shared/ui/cartItem";
+import { PlaceOrderButton } from "../../shared/ui/buttons/placeOrderButton";
+import { OrderSuccessModal } from "./components/OrderSuccessModal";
 
 export const CartPage = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+
   const location = useLocation();
   const pathname = location.pathname;
 
@@ -36,6 +44,11 @@ export const CartPage = () => {
     void loadCartItems();
   }, []);
 
+  const handleOrderSuccess = () => {
+    setIsOrderModalOpen(false);
+    setIsSuccessModalOpen(true);
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -58,44 +71,14 @@ export const CartPage = () => {
         <div className={styles.content}>
           <ul className={styles.cartList}>
             {cartItems.map(cartItem => (
-              <li className={styles.listItem} key={cartItem.id}>
-                <div className={styles.listItem__firstBlock}>
-                  <img 
-                    className={styles.listItem__itemImage}
-                    src={cartItemImage} 
-                    alt="cart item image" 
-                  />
-                
-                  <p className={`body-text ${styles.listItem__name}`}>
-                    {cartItem.ingredient_name}
-                  </p>
-                </div>
-                <p className={`main-text ${styles.listItem__quantity}`}>
-                  {cartItem.quantity} {cartItem.unit}
-                </p>
-                <button 
-                  type="button"
-                  className={styles.listItem__deleteButton}
-                  aria-label="Remove item"
-                >
-                  <span 
-                    className={styles.listItem__deleteIcon}
-                    aria-hidden="true"
-                  />
-                </button>  
-              </li>
+              <CartItem cartItem={cartItem} key={cartItem.id}/>
             ))}
           </ul>
           <div className={styles.footer}>
             <p className={`body-text ${styles.footer__text}`}>
               {`${cartItems.length} products`}
             </p>
-            <button 
-              type="button"
-              className={`button-text ${styles.footer__button}`}
-            >
-              Place Order
-            </button>
+            <PlaceOrderButton onClick={() => setIsOrderModalOpen(true)}/>
           </div>
         </div>
       )}
@@ -103,8 +86,22 @@ export const CartPage = () => {
       {!isLoading && !error && cartItems.length === 0 && (
         <NoResults pathname={pathname} /> 
       )}
-      
+
+      {isOrderModalOpen && (
+        <Modal onClose={() => setIsOrderModalOpen(false)}>
+          <OrderModal 
+            cartItems={cartItems}
+            onClose={() => setIsOrderModalOpen(false)}
+            onOrderSuccess={handleOrderSuccess}
+          />
+        </Modal>
+      )}
+
+      {isSuccessModalOpen && (
+        <Modal onClose={() => setIsSuccessModalOpen(false)}>
+          <OrderSuccessModal onClose={() => setIsSuccessModalOpen(false)}/>
+        </Modal>
+      )}
     </div>
-   
   );
 }

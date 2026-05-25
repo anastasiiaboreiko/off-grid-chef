@@ -1,0 +1,82 @@
+@use '../../styles/mixins.scss';
+@use '../../styles/var.scss';
+
+.orderList {
+  display: flex;
+  flex-direction: column;
+  background-color: var.$background-color;
+  padding: 16px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 226px; 
+  height: 100%;
+  z-index: 2;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+
+  @include mixins.on-tablet {
+    height: 54px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    position: static;
+    display: flex;
+    width: 248px;
+    padding: 16px;
+    border-radius: var.$border-radius;
+  }
+
+  @include mixins.on-desktop {
+    width: 340px;
+    height: 74px;
+    padding: 24px;
+  }
+
+  &__open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+
+    @include mixins.on-tablet {
+      display: flex;
+      width: 248px;
+      height: 454px;
+    }
+
+    @include mixins.on-desktop {
+      height: 592px;
+      width: 340px;
+    }
+  }
+
+  &__head {
+    position: relative;
+    display: flex;
+  }
+
+  &__title {
+    color: var.$secondary-text-color;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-block: 16px;
+    gap: 8px;
+    overflow-y: scroll;
+
+    @include mixins.on-desktop {
+      padding-block: 32px;
+    }
+  }
+}

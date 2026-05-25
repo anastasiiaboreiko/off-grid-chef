@@ -1,0 +1,82 @@
+@use '../../styles/mixins.scss';
+@use '../../styles/var.scss';
+
+.listItem {
+  position: relative;
+  list-style: none;
+  box-shadow: 0px 0px 4px 0px #B0B0B033;
+  border-radius: var.$border-radius;
+  background-color: var.$white-background-color;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 28px;
+
+  @include mixins.on-desktop {
+    width: 100%;
+    max-width: 324px;
+  }
+
+  &__firstBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__itemImage {
+    width: 56px;
+    height: 56px;
+    border-radius: var.$border-radius;
+
+    @include mixins.on-desktop {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  &__name {
+    color: var.$secondary-text-color;
+  }
+
+  &__quantity {
+    color: var.$secondary-text-color;
+  }
+
+  &__deleteButton {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0px 0px 4px 0px #B0B0B033;
+    background: transparent;
+    cursor: pointer;
+
+    @include mixins.on-desktop {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__deleteIcon {
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: var.$details-color;
+    mask-image: url('/src/img/icons/trash.svg');
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+
+    @include mixins.on-desktop {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

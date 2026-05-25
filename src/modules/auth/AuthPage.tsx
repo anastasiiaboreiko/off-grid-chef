@@ -184,7 +184,7 @@ export const AuthPage = () => {
           </label>
 
           {mode === 'signup' 
-            ? (
+            && (
               <label className={styles.form__checkbox}>
                 <input 
                   type="checkbox"
@@ -194,9 +194,10 @@ export const AuthPage = () => {
                 />
                 <span className={`small-text ${styles.form__checkbox_text}`}>I accept the Terms of Use and Privacy Policy.</span>
               </label>
-            ) : (
-              <p className={`body-text ${styles.form__question}`}>Forgot Password?</p>
-            )
+            ) 
+            
+              // <p className={`body-text ${styles.form__question}`}>Forgot Password?</p>
+        
           }
 
           <button 

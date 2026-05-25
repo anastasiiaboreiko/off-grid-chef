@@ -1,0 +1,113 @@
+@use '../../../../shared/styles/mixins.scss';
+@use '../../../../shared/styles/var.scss';
+
+.successModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 224px;
+  height: 210px;
+  border-radius: var.$border-radius;
+
+  @include mixins.on-tablet {
+    width: 320px;
+    height: 276px;
+  }
+
+  @include mixins.on-desktop {
+    width: 420px;
+    height: 368px;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 96px;
+    width: 100%;
+    background-color: var.$background-color;
+    border-radius: var.$border-radius;
+
+    @include mixins.on-tablet {
+      height: 136px;
+    }
+
+    @include mixins.on-desktop {
+      height: 184px;
+    }
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    background-color: var.$white-background-color;
+    border-radius: 50%;
+
+    @include mixins.on-tablet {
+      width: 88px;
+      height: 88px;
+    }
+
+    @include mixins.on-desktop {
+      width: 120px;
+      height: 120px;
+    }
+
+    &_icon {
+      display: block;
+      width: 40px;
+      height: 40px;
+      background-color: var.$primary-accent-color;
+      mask-image: url('/src/img/icons/check.svg');
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
+
+      @include mixins.on-tablet {
+        width: 64px;
+        height: 64px;
+      }
+
+      @include mixins.on-desktop {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+
+  &__text {
+    padding-block: 16px;
+    color: var.$secondary-text-color;
+
+    @include mixins.on-desktop {
+      padding-block: 32px;
+    }
+
+    &_bold {
+      color: var.$primary-text-color;
+      font-weight: 500;
+    }
+  }
+
+  &__button {
+    font-family: inherit;
+    width: 120px;
+    height: 32px;
+    border: none;
+    border-radius: var.$border-radius;
+    color: var.$white-background-color;
+    background-color: var.$primary-accent-color;
+
+    @include mixins.on-tablet {
+      height: 40px;
+    }
+
+    @include mixins.on-desktop {
+      height: 48px;
+      width: 200px;
+    }
+  }
+}
