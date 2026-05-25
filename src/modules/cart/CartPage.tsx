@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from './CartPage.module.scss';
 import type { CartItemType } from "../../shared/types/CartItemType";
 import { Loader } from "../../shared/ui/loader";
-import { getCartItems } from "../../shared/api/apiCart";
+import { deleteAllCartItems, deleteCartItem, getCartItems } from "../../shared/api/apiCart";
 
 import { NoResults } from "../../shared/ui/noResults";
 import { useLocation } from "react-router-dom";
@@ -49,6 +49,41 @@ export const CartPage = () => {
     setIsSuccessModalOpen(true);
   }
 
+  const handleDeleteCartItem = async (cartItemId: number) => {
+    const accessToken = localStorage.getItem('accessToken');
+
+    if (!accessToken) {
+      setError('There is no authorised user.');
+      return;
+    }
+
+    try {
+      await deleteCartItem(accessToken, cartItemId);
+
+      setCartItems(prev =>
+        prev.filter(item => item.id !== cartItemId)
+      );
+    } catch {
+      setError('Failed to delete cart item.');
+    }
+  };
+
+  const handleDeleteAllCartItems = async () => {
+    const accessToken = localStorage.getItem('accessToken');
+
+    if (!accessToken) {
+      setError('There is no authorised user.');
+      return;
+    }
+
+    try {
+      await deleteAllCartItems(accessToken);
+      setCartItems([]);
+    } catch {
+      setError('Failed to clear cart.');
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -56,6 +91,7 @@ export const CartPage = () => {
         <button 
           type="button"
           className={`body-text ${styles.header__button}`}
+          onClick={handleDeleteAllCartItems}
         >
           Clear cart
         </button>
@@ -71,7 +107,11 @@ export const CartPage = () => {
         <div className={styles.content}>
           <ul className={styles.cartList}>
             {cartItems.map(cartItem => (
-              <CartItem cartItem={cartItem} key={cartItem.id}/>
+              <CartItem
+                cartItem={cartItem}
+                key={cartItem.id}
+                onDelete={handleDeleteCartItem}
+              />
             ))}
           </ul>
           <div className={styles.footer}>

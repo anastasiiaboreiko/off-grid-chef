@@ -8,7 +8,8 @@ type AddRecipeToCartResponse = {
 
 export async function addRecipeToCart(
   recipeId: number, 
-  accessToken: string
+  accessToken: string,
+  ingredientIds: number[],
 ): Promise<AddRecipeToCartResponse> {
   const response = await fetch(`${API_URL}/cart/add-recipe/${recipeId}/`, {
     method: 'POST',
@@ -16,6 +17,7 @@ export async function addRecipeToCart(
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
+    body: JSON.stringify({ ingredient_ids: ingredientIds }),
   });
 
   if (!response.ok) {
@@ -39,3 +41,32 @@ export async function getCartItems(accessToken: string): Promise<CartItemType[]>
 
   return response.json();
 };
+
+export async function deleteAllCartItems(accessToken: string): Promise<void> {
+  const response = await fetch(`${API_URL}/cart/delete-all/`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete all cart items');
+  }
+}
+
+export async function deleteCartItem(
+  accessToken: string,
+  cartItemId: number,
+): Promise<void> {
+  const response = await fetch(`${API_URL}/cart/${cartItemId}/`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete the cart item');
+  }
+}

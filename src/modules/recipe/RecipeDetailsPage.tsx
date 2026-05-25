@@ -18,6 +18,7 @@ export const RecipeDetailsPage = () => {
   const { isMobile } = useDeviceType();
 
   const [cartMessage, setCartMessage] = useState('')
+  const [excludedIngredientIds, setExcludedIngredientIds] = useState<Set<number>>(new Set());
 
   const navigate = useNavigate();
   const isRecipeDetailesPage = Boolean(useMatch('/recipes/:recipeId'))
@@ -33,6 +34,20 @@ export const RecipeDetailsPage = () => {
   const removeStepNumber = (value: string) =>
     value.replace(/^\d+\.\s/, "");
 
+  const handleToggleIngredient = (ingredientId: number) => {
+    setExcludedIngredientIds(prev => {
+      const nextExcludedIngredientIds = new Set(prev);
+
+      if (nextExcludedIngredientIds.has(ingredientId)) {
+        nextExcludedIngredientIds.delete(ingredientId);
+      } else {
+        nextExcludedIngredientIds.add(ingredientId);
+      }
+
+      return nextExcludedIngredientIds;
+    });
+  };
+
   const handleAddToCart = async () => {
     setCartMessage('');
     const accessToken = localStorage.getItem('accessToken');
@@ -41,8 +56,17 @@ export const RecipeDetailsPage = () => {
       return;
     }
 
+    const ingredientIds = recipeIngredients
+      ?.filter(ingredient => !excludedIngredientIds.has(ingredient.id))
+      .map(ingredient => ingredient.id) ?? [];
+
+    if (ingredientIds.length === 0) {
+      setCartMessage('Select at least one ingredient.');
+      return;
+    }
+
     try {
-      const result = await addRecipeToCart(currentRecipe.id, accessToken);
+      const result = await addRecipeToCart(currentRecipe.id, accessToken, ingredientIds);
       if (result.added_items > 0) {
         setCartMessage('Ingredients added to cart.');
       } else {
@@ -138,7 +162,12 @@ export const RecipeDetailsPage = () => {
             {recipeIngredients && (
               <ul className={styles.ingredients__list}>
                 {recipeIngredients.map(ingredient => (
-                  <Ingredient ingredient={ingredient} key={ingredient.id} />
+                  <Ingredient
+                    ingredient={ingredient}
+                    isChecked={!excludedIngredientIds.has(ingredient.id)}
+                    key={ingredient.id}
+                    onToggle={handleToggleIngredient}
+                  />
                 ))}
               </ul>
             )}

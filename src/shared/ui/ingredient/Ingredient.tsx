@@ -2,15 +2,14 @@ import type React from "react";
 
 import styles from './Ingredient.module.scss';
 import type { IngredientType } from "../../types/Recipe";
-import { useState } from "react";
 
 type Props = {
-  ingredient: IngredientType
+  ingredient: IngredientType;
+  isChecked: boolean;
+  onToggle: (ingredientId: number) => void;
 }
 
-export const Ingredient: React.FC<Props> = ({ ingredient }) => {
-  const [isChecked, setIsChecked] = useState<boolean>(true);
-
+export const Ingredient: React.FC<Props> = ({ ingredient, isChecked, onToggle }) => {
   return (
     <li className={styles.ingredient} key={ingredient.id}>
       <div className={styles.ingredient__item}>
@@ -18,7 +17,7 @@ export const Ingredient: React.FC<Props> = ({ ingredient }) => {
           <input
             type="checkbox"
             checked={isChecked}
-            onChange={() => setIsChecked(prev => !prev)}
+            onChange={() => onToggle(ingredient.id)}
             className={styles.firstPart__input}
           />
           <p className={`body-text ${styles.firstPart__name}`}>
