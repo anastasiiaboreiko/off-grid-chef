@@ -1,4 +1,5 @@
 import type { Recipe } from "../types/Recipe";
+import placeholderImage from "../../img/placeholder.svg";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -19,6 +20,6 @@ export async function getRecipes(): Promise<Recipe[]> {
 
   return data.map(recipe => ({
     ...recipe,
-    image: recipe.image_url || '/placeholder.png'
+    image: recipe.image_url || placeholderImage
   }));
 }

@@ -1,4 +1,6 @@
 import styles from './Logo.module.scss';
+import favicon from '../../../img/icons/favicon.svg';
+import logo from '../../../img/logo.svg';
 
 type LogoOptions = 'default' | 'compact';
 
@@ -9,9 +11,7 @@ type Props = {
 export const Logo: React.FC<Props> = ({ option = 'default' }) => {
   const isCompact = option === 'compact';
 
-  const correctLogo = isCompact 
-  ? 'src/img/icons/favicon.svg'
-  : "src/img/logo.svg";
+  const correctLogo = isCompact ? favicon : logo;
 
   return (
     <img 

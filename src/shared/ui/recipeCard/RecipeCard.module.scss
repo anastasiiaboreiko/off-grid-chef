@@ -46,16 +46,18 @@
   &__specs {
     position: absolute;
     width: 100%;
-    top: 16px;
+    top: 8px;
     display: flex;
     padding-inline: 16px;
     justify-content: space-between;
     @include mixins.on-tablet {
       width: 245px;
+      top: 12px;
     }
   
     @include mixins.on-desktop {
       width: 324px;
+      top: 16px;
     }
   }
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from './AdditionalFilters.module.scss';
+import arrowDownIcon from '../../../img/icons/arrowDown.svg';
 
 type FilterOption = {
   value: string
@@ -68,7 +69,7 @@ export const AdditionalFilters = () => {
           </span>
 
           <img
-            src="src/img/icons/arrowDown.svg"
+            src={arrowDownIcon}
             alt="arrow"
             className={isOpen ? styles.arrowOpen : styles.arrow}
           />
