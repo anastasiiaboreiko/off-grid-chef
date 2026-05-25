@@ -28,6 +28,7 @@
     width: 56px;
     height: 56px;
     border-radius: var.$border-radius;
+    padding: 2px;
 
     @include mixins.on-desktop {
       width: 64px;

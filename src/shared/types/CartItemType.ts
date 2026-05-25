@@ -8,4 +8,5 @@ export type CartItemType = {
   ingredient_name: IngredientType['name'];
   quantity: IngredientType['quantity'];
   unit: IngredientType['unit'];
+  image: IngredientType['image'];
 }

@@ -33,6 +33,7 @@ class Ingredients(models.Model):
     name = models.CharField(max_length=255)
     quantity = models.FloatField()
     unit = models.CharField(max_length=255)
+    image = models.URLField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
