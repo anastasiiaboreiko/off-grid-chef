@@ -24,17 +24,23 @@ export const Main: React.FC<Props> = ({ isSidebarOpen, onBurgerClick }) => {
             onClick={() => navigate('/')}
             isHidden={!isRecipeDetailsPage}
           />
-          <Logo />
+          <div className={styles.main__logo}>
+            <Logo />
+          </div>
           {isSidebarOpen 
             ? (
               <CloseButton 
                 onClose={onBurgerClick}
                 ariaLabel="Close menu"
+                className={styles.main__menuButton}
               />
             ) : (
               <button
                 type="button"
-                className={styles.main__burgerMenuButton}
+                className={`
+                  ${styles.main__menuButton}
+                  ${styles.main__burgerMenuButton}
+                `}
                 onClick={onBurgerClick}
                 aria-label="Open menu"
               >

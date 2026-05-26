@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Logo.module.scss';
 import favicon from '../../../img/icons/favicon.svg';
 import logo from '../../../img/logo.svg';
@@ -14,13 +15,14 @@ export const Logo: React.FC<Props> = ({ option = 'default' }) => {
   const correctLogo = isCompact ? favicon : logo;
 
   return (
-    <img 
-      src={correctLogo}
-      className={`
-        ${styles.logo}
-        ${isCompact ? styles.logo__compact : styles.logo__default}
-      `} 
-      alt="logo"
-    />
-  )
+    <Link to="/" className={styles.logo} aria-label="Go to home page">
+      <img
+        src={correctLogo}
+        className={`
+          ${isCompact ? styles.logo__compact : styles.logo__default}
+        `}
+        alt="logo"
+      />
+    </Link>
+  );
 }

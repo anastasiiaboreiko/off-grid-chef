@@ -12,10 +12,10 @@ export const useDeviceType = (): DeviceType => {
 
   useEffect(() => {
     const mobileQuery = window.matchMedia(
-      '(min-width: 320px) and (max-width: 743px'
+      '(min-width: 320px) and (max-width: 743px)'
     );
     const tabletQuery = window.matchMedia(
-      '(min-width: 744px) and (max-width: 1279px'
+      '(min-width: 744px) and (max-width: 1279px)'
     );
 
     const handleChange = () => {
