@@ -20,6 +20,18 @@
   }
 }
 
+@mixin hover-scale {
+  transition: transform 0.3s ease;
+
+  &:not(:disabled):hover {
+    transform: scale(1.05);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
 @mixin content-padding-inline() {
   padding-inline: 16px;
   margin-inline: auto;

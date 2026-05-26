@@ -3,7 +3,8 @@
 
 .sidebar {
   position: fixed;
-  height: calc(100vh - var.$mobileHeaderHeight - var.$mobileFooterHeight);
+  z-index: 10;
+  height: calc(100dvh - var.$mobileHeaderHeight - var.$mobileFooterHeight);
   width: 100%;
 
   top: var.$mobileHeaderHeight;
@@ -104,6 +105,8 @@
       gap: 16px;
     }
 
+    @include mixins.hover-scale;
+
     .sidebar__iconHome {
       background-color: var.$primary-accent-color;
       mask-image: url('../../../img/icons/home-filled.svg');
@@ -137,6 +140,24 @@
     @include mixins.on-desktop {
       gap: 16px;
     }
+
+    @include mixins.hover-scale;
+
+    &:hover {
+      color: var.$primary-accent-color;
+
+      .sidebar__iconHome,
+      .sidebar__iconCart,
+      .sidebar__iconFavorite {
+        background-color: var.$primary-accent-color;
+      }
+    }
+  }
+
+  &__iconHome,
+  &__iconCart,
+  &__iconFavorite {
+    transition: background-color 0.3s ease;
   }
 
   &__iconHome {
@@ -375,4 +396,3 @@
     }
   }
 }
-
