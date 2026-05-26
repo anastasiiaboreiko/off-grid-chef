@@ -8,12 +8,21 @@
   min-width: 0;
 
   &__header { 
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 72px 1fr 72px;
     align-items: center;
     flex-shrink: 0;
     height: var.$mobileHeaderHeight;
     padding-inline: 16px;
+  }
+
+  &__logo {
+    display: flex;
+    justify-self: center;
+  }
+
+  &__menuButton {
+    justify-self: end;
   }
 
   &__burgerMenuButton {

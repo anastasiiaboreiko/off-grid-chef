@@ -8,6 +8,9 @@
   width: 100%;
   border-radius: var.$border-radius;
   background-color: var.$white-background-color;
+  transform-origin: center;
+
+  @include mixins.hover-scale;
 
   @include mixins.on-tablet {
     width: 245px;
