@@ -21,6 +21,7 @@
 }
 
 @mixin hover-scale {
+  cursor: pointer;
   transition: transform 0.3s ease;
 
   &:not(:disabled):hover {

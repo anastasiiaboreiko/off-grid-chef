@@ -127,14 +127,16 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
             className={styles.user__icon} 
             onClick={handleSidebarToggle}
           />
-            <p className={`body-text ${styles.user__name}`}>{user?.full_name}</p>
-            <span 
-              className={`
-                ${styles.user__arrow} 
-                ${!isOpen ? styles.user__arrow_open : ''}
-              `} 
-              onClick={handleClick}
-            />
+            <div className={styles.user__block} onClick={handleClick}>
+              <p className={`body-text ${styles.user__name}`}>{user?.full_name}</p>
+              <span 
+                className={`
+                  ${styles.user__arrow} 
+                  ${!isOpen ? styles.user__arrow_open : ''}
+                `} 
+              />
+            </div>
+           
         </div>
         
       </footer>
