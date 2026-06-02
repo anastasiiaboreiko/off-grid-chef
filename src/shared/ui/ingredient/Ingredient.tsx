@@ -13,11 +13,14 @@ export const Ingredient: React.FC<Props> = ({ ingredient, isChecked, onToggle })
   return (
     <li className={styles.ingredient} key={ingredient.id}>
       <div className={styles.ingredient__item}>
-        <div className={styles.firstPart}>
+        <div 
+          className={styles.firstPart}
+          onClick={() => onToggle(ingredient.id)}
+        >
           <input
             type="checkbox"
             checked={isChecked}
-            onChange={() => onToggle(ingredient.id)}
+            
             className={styles.firstPart__input}
           />
           <p className={`body-text ${styles.firstPart__name}`}>

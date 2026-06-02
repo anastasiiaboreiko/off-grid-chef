@@ -1,5 +1,4 @@
 import styles from './OrderCartItem.module.scss';
-import cartItemImage from "../../../img/cartImage_2.png";
 import type { CartItemType } from "../../types/CartItemType";
 
 type Props = {
@@ -12,7 +11,7 @@ export const OrderCartItem = ({ cartItem }: Props) => {
       <div className={styles.listItem__firstBlock}>
         <img 
           className={styles.listItem__itemImage}
-          src={cartItemImage} 
+          src={cartItem.image} 
           alt="cart item image" 
         />
       

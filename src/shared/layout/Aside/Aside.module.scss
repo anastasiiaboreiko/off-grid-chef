@@ -4,7 +4,7 @@
 .sidebar {
   position: fixed;
   z-index: 10;
-  height: calc(100dvh - var.$mobileHeaderHeight - var.$mobileFooterHeight);
+  height: calc(100dvh - var.$mobileHeaderHeight);
   width: 100%;
 
   top: var.$mobileHeaderHeight;
@@ -299,6 +299,7 @@
   padding-inline: 8px;
   gap: 8px;
   box-sizing: border-box;
+  cursor: pointer;
 
   @include mixins.on-tablet {
     width: 32px;
@@ -329,6 +330,13 @@
       height: 32px;
     }
 
+  }
+
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
   }
 
   &__details {

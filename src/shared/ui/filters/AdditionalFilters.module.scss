@@ -25,6 +25,7 @@
   background-color: var.$primary-accent-color;
   border-radius: 8px;
   padding-left: 16px;
+  cursor: pointer;
 }
 
 .value {
@@ -63,4 +64,5 @@
 .listItem {
   padding-block: 5px;
   padding-left: 16px;
+  cursor: pointer;
 }
