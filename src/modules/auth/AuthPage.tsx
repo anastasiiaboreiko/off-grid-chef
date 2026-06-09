@@ -5,6 +5,7 @@ import { Logo } from "../../shared/ui/logo/Logo";
 import styles from './AuthPage.module.scss';
 import eyeOffIcon from "../../img/icons/eye-off-light.svg";
 import eyeIcon from "../../img/icons/eye-light.svg";
+import { Loader } from "../../shared/ui/loader";
 
 type Errors = {
   email?: string;
@@ -21,6 +22,7 @@ export const AuthPage = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Errors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {login, signup} = useContext(AuthContext);
   const navigate = useNavigate();
@@ -78,6 +80,7 @@ export const AuthPage = () => {
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFieldErrors({});
+    setIsSubmitting(true);
 
     try {
       if (mode === 'login') {
@@ -96,6 +99,8 @@ export const AuthPage = () => {
       navigate('/');
     } catch (error) {
       setFieldErrors(getFieldErrors(error));
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -203,9 +208,11 @@ export const AuthPage = () => {
           <button 
             type="submit" 
             className={`button-text ${styles.form__submitButton}`}
-            disabled={isSubmitDisabled}
+            disabled={isSubmitDisabled || isSubmitting}
           >
-            {mode === 'login' ? 'Login' : 'Sign up'}
+            {isSubmitting
+              ? <Loader />
+              : mode === 'login' ? 'Login' : 'Sign up'}
           </button>
         
         </form>
