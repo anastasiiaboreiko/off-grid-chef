@@ -3,9 +3,9 @@
 @use '../../shared/styles/typography.scss';
 
 .container {
-  
+
   @include mixins.content-padding-inline;
-  
+
   max-width: 1120px;
   margin-left: 0;
   padding-block: 16px 110px;
@@ -237,12 +237,12 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
- 
+
   font-family: inherit;
   border: none;
   width: 120px;
   height: 40px;
-  
+
   color: var.$white-background-color;
   background-color: var.$primary-accent-color;
   border-radius: var.$border-radius;
@@ -271,23 +271,20 @@
     width: 48px;
     height: 48px;
   }
-  
+
   &__icon {
     display: block;
     width: 20px;
     height: 20px;
-  
+
       mask-image: url('../../img/icons/info.svg');
       mask-size: contain;
       background-color: var.$primary-accent-color;
-  
+
       @include mixins.on-desktop {
         width: 24px;
         height: 24px;
       }
   }
- 
+
 }
-
-
-

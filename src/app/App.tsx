@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Aside } from "../shared/layout/Aside/Aside";
 import { Main } from "../shared/layout/Main/Main";
 import './app.scss'
+import { useDeviceType } from "../shared/hooks/useDeviceType";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { isMobile, isTablet } = useDeviceType();
   const handleMainClick = () => {
     if (isSidebarOpen) {
       setIsSidebarOpen(false);
@@ -14,16 +16,19 @@ function App() {
   return (
     <div className={`app ${isSidebarOpen ? 'app--sidebar-open' : ''}`}>
       <aside className="app__aside">
-        <Aside 
+        <Aside
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
+          isMobile={isMobile}
+          isTablet={isTablet}
         />
       </aside>
-     
+
       <main className="app__main" onClick={handleMainClick}>
-        <Main 
+        <Main
           isSidebarOpen={isSidebarOpen}
-          onBurgerClick={() => setIsSidebarOpen(prev => !prev)} 
+          onBurgerClick={() => setIsSidebarOpen(prev => !prev)}
+          isMobile={isMobile}
         />
       </main>
     </div>

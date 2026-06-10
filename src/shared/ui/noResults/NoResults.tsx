@@ -13,16 +13,16 @@ export const NoResults: React.FC<Props> = ({ pathname }) => {
     <div className={styles.container}>
       {(isFavoritePage || isCartPage) && (
         <>
-          <span 
-            className={isFavoritePage 
+          <span
+            className={isFavoritePage
               ? `${styles.favoriteIcon} ${styles.icon}`
               : `${styles.cartIcon} ${styles.icon}`
-            } 
+            }
             aria-hidden="true"
           />
-    
+
           <p className={`body-text ${styles.title}`}>
-            {isFavoritePage 
+            {isFavoritePage
               ? 'Favorite is empty'
               : 'Cart is empty'
             }
@@ -39,7 +39,7 @@ export const NoResults: React.FC<Props> = ({ pathname }) => {
       {isRecipeListPage && (
         <p className={`body-text ${styles.title}`}>Sorry, there are no suitable recipes matching your filters.</p>
       )}
-  
+
     </div>
   );
 };

@@ -7,7 +7,7 @@ type Props = {
 
 export const NextButton = ({ onNext, disabled = false }: Props) => {
   return (
-    <button 
+    <button
       type="button"
       onClick={onNext}
       className={`button-text ${styles.button}`}

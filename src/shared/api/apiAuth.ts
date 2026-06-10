@@ -27,8 +27,8 @@ export async function signupUser(data: UserRegistration): Promise<User> {
 
 export async function loginUser(data: Pick<UserRegistration, 'email' | 'password'>): Promise<LoginResponse> {
   const response = await fetch(`${API_URL}/users/login/`, {
-    method: 'POST', 
-    headers:  {
+    method: 'POST',
+    headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
@@ -64,7 +64,7 @@ export async function logoutUser(
 
   const response = await fetch(`${API_URL}/users/logout/`, {
     method: 'POST',
-    headers:  {
+    headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`
     },

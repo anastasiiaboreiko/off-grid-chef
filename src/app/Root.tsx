@@ -21,8 +21,8 @@ export const Root = () => (
   <Router>
     <AuthProvider>
       <Routes>
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           element={
             <ProtectedRoute>
               <RecipesProvider>
@@ -31,14 +31,14 @@ export const Root = () => (
                 </FavoritesProvider>
               </RecipesProvider>
             </ProtectedRoute>
-          }> 
+          }>
           <Route index element={<RecipeListPage />} />
           <Route path="home" element={<Navigate to="/" replace />} />
-          <Route path="recipes/:recipeId" element={<RecipeDetailsPage/>} />
+          <Route path="recipes/:recipeId" element={<RecipeDetailsPage />} />
           <Route path="favorites" element={<FavoritesPage />} />
           <Route path="cart" element={<CartPage />} />
         </Route>
-        <Route 
+        <Route
           path="/auth"
           element={
             <GuestRoute>
@@ -47,8 +47,8 @@ export const Root = () => (
           }
         />
       </Routes>
-     
+
     </AuthProvider>
-  
+
   </Router>
 )

@@ -5,11 +5,11 @@ type Props = {
   recipe: Recipe;
 };
 
-export const TimeDetails: React.FC<Props> = ({ recipe })  => {
+export const TimeDetails: React.FC<Props> = ({ recipe }) => {
   return (
     <div className={styles.time}>
-      <span 
-        className={styles.time__icon} 
+      <span
+        className={styles.time__icon}
         aria-hidden="true"
       />
       <p className={`main-text`}>{recipe.cooking_time}m</p>

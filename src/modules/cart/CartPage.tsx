@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from './CartPage.module.scss';
 import type { CartItemType } from "../../shared/types/CartItemType";
 import { Loader } from "../../shared/ui/loader";
@@ -14,7 +14,7 @@ import { OrderSuccessModal } from "./components/OrderSuccessModal";
 
 export const CartPage = () => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -25,12 +25,11 @@ export const CartPage = () => {
   useEffect(() => {
     const loadCartItems = async () => {
       const accessToken = localStorage.getItem('accessToken');
-    
+
       if (!accessToken) {
         setError('There is no authorised user.');
         return;
       };
-      setIsLoading(true);
 
       try {
         const result = await getCartItems(accessToken);
@@ -49,24 +48,27 @@ export const CartPage = () => {
     setIsSuccessModalOpen(true);
   }
 
-  const handleDeleteCartItem = async (cartItemId: number) => {
-    const accessToken = localStorage.getItem('accessToken');
+  const handleDeleteCartItem = useCallback(
+    async (cartItemId: number) => {
+      const accessToken = localStorage.getItem('accessToken');
 
-    if (!accessToken) {
-      setError('There is no authorised user.');
-      return;
-    }
+      if (!accessToken) {
+        setError('There is no authorised user.');
+        return;
+      }
 
-    try {
-      await deleteCartItem(accessToken, cartItemId);
+      try {
+        await deleteCartItem(accessToken, cartItemId);
 
-      setCartItems(prev =>
-        prev.filter(item => item.id !== cartItemId)
-      );
-    } catch {
-      setError('Failed to delete cart item.');
-    }
-  };
+        setCartItems(prev =>
+          prev.filter(item => item.id !== cartItemId)
+        );
+      } catch {
+        setError('Failed to delete cart item.');
+      }
+    },
+    [],
+  );
 
   const handleDeleteAllCartItems = async () => {
     const accessToken = localStorage.getItem('accessToken');
@@ -88,7 +90,7 @@ export const CartPage = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>Cart</h1>
-        <button 
+        <button
           type="button"
           className={`body-text ${styles.header__button}`}
           onClick={handleDeleteAllCartItems}
@@ -96,7 +98,7 @@ export const CartPage = () => {
           Clear cart
         </button>
       </div>
-      
+
 
       {isLoading && <Loader />}
       {!isLoading && error && (
@@ -118,18 +120,18 @@ export const CartPage = () => {
             <p className={`body-text ${styles.footer__text}`}>
               {`${cartItems.length} products`}
             </p>
-            <PlaceOrderButton onClick={() => setIsOrderModalOpen(true)}/>
+            <PlaceOrderButton onClick={() => setIsOrderModalOpen(true)} />
           </div>
         </div>
       )}
 
       {!isLoading && !error && cartItems.length === 0 && (
-        <NoResults pathname={pathname} /> 
+        <NoResults pathname={pathname} />
       )}
 
       {isOrderModalOpen && (
         <Modal onClose={() => setIsOrderModalOpen(false)}>
-          <OrderModal 
+          <OrderModal
             cartItems={cartItems}
             onClose={() => setIsOrderModalOpen(false)}
             onOrderSuccess={handleOrderSuccess}
@@ -139,7 +141,7 @@ export const CartPage = () => {
 
       {isSuccessModalOpen && (
         <Modal onClose={() => setIsSuccessModalOpen(false)}>
-          <OrderSuccessModal onClose={() => setIsSuccessModalOpen(false)}/>
+          <OrderSuccessModal onClose={() => setIsSuccessModalOpen(false)} />
         </Modal>
       )}
     </div>

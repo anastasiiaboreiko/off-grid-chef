@@ -1,13 +1,13 @@
 import styles from './CartButton.module.scss';
 
-type Props ={ 
+type Props = {
   isOpen: () => void;
 }
 
 export const CartButton = ({ isOpen }: Props) => {
   return (
-    <button 
-      type="button" 
+    <button
+      type="button"
       className={styles.cartButton}
       onClick={isOpen}
     >

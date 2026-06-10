@@ -79,7 +79,7 @@ h4 {
     line-height: 120%;
     letter-spacing: 0%;
   }
-  
+
 }
 
 .main-text {
@@ -117,7 +117,7 @@ h4 {
     letter-spacing: 0%;
     text-align: center;
   }
- 
+
   @include mixins.on-desktop {
     font-weight: 500;
     font-size: 20px;

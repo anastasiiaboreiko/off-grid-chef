@@ -3,7 +3,7 @@ import type { Recipe } from "../../types/Recipe";
 import styles from './ComplexityDetails.module.scss';
 
 
-type Props= {
+type Props = {
   recipe: Recipe;
 }
 

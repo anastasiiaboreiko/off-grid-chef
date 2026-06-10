@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import styles from './OrderModal.module.scss';
 import type { CartItemType } from "../../../../shared/types/CartItemType";
 import { BackButton } from "../../../../shared/ui/buttons/backButton/BackButton";
@@ -29,7 +29,7 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
   const [currentStep, setCurrentStep] = useState<OrderStep>('myInfo');
 
   const { user } = useContext(AuthContext);
- 
+
   const [orderForm, setOrderForm] = useState<OrderFormData>({
     full_name: user?.full_name || '',
     email: user?.email || '',
@@ -47,9 +47,9 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(orderForm.email.trim());
   const isCountryCodeValid = orderForm.country_code.trim().length > 0;
   const isPhoneNumberValid = orderForm.phone_number.replace(/\D/g, '').length === 9;
-  
 
-  const isMyInfoStepValid = 
+
+  const isMyInfoStepValid =
     isFullNameValid &&
     isEmailValid &&
     isCountryCodeValid &&
@@ -60,7 +60,7 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
     orderForm.street.trim() !== '' &&
     orderForm.home.trim() !== '';
 
-  const isNextButtonDisabled = currentStep === 'myInfo' 
+  const isNextButtonDisabled = currentStep === 'myInfo'
     ? !isMyInfoStepValid
     : !isDeliveryStepValid;
 
@@ -128,25 +128,29 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
     onOrderSuccess();
   }
 
-  const handleSubmit = () => {};
+  const handleOrderListToggle = useCallback(() => {
+    setIsOrderListOpen(prev => !prev);
+  }, []);
+
+  const handleSubmit = () => { };
 
   return (
     <div className={styles.orderModal}>
       <header className={styles.orderModal__header}>
         <h1>Place Order</h1>
-        <CloseButton onClose={onClose}/>
+        <CloseButton onClose={onClose} />
       </header>
       <main className={styles.orderModal__main}>
         <div className={styles.orderDetails}>
           <div className={styles.orderDetails__top}>
             <div className={styles.progress}>
               {orderSteps.map((step, index) => (
-                <span 
+                <span
                   key={step}
                   className={`
                     ${styles.progress__item}
-                    ${index <= currentStepIndex 
-                      ? styles.progress__item_active 
+                    ${index <= currentStepIndex
+                      ? styles.progress__item_active
                       : ''
                     }
                   `}
@@ -154,16 +158,16 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
               ))}
             </div>
             <h3 className={styles.title}>{stepTitles[currentStep]}</h3>
-            <CartButton isOpen={() => setIsOrderListOpen(true)}/>
+            <CartButton isOpen={() => setIsOrderListOpen(true)} />
           </div>
-          
+
           <div className={styles.orderDetails__content}>
-            <form 
+            <form
               onSubmit={handleSubmit}
               className={styles.form}
             >
               {currentStep === 'myInfo' && (
-                <MyInformationFields 
+                <MyInformationFields
                   onChange={handleChange}
                   onCountryCodeChange={handleCountryCodeChange}
                   orderForm={orderForm}
@@ -171,7 +175,7 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
               )}
 
               {currentStep === 'delivery' && (
-                <DeliveryInformationFields 
+                <DeliveryInformationFields
                   onChange={handleChange}
                   orderForm={orderForm}
                 />
@@ -179,7 +183,7 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
 
               {currentStep === 'confirm' && (
                 <div className={styles.confirm}>
-                  <div 
+                  <div
                     className={styles.confirm__header}
                     onClick={() => setIsMyInfoOpen(prev => !prev)}
                   >
@@ -189,14 +193,14 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
                     <ArrowOpen isArrowOpen={isMyInfoOpen} />
                   </div>
                   {isMyInfoOpen && (
-                    <MyInformationFields 
+                    <MyInformationFields
                       onChange={handleChange}
                       onCountryCodeChange={handleCountryCodeChange}
                       orderForm={orderForm}
                     />
                   )}
 
-                  <div 
+                  <div
                     className={styles.confirm__header}
                     onClick={() => setIsDeliveryOpen(prev => !prev)}
                   >
@@ -206,7 +210,7 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
                     <ArrowOpen isArrowOpen={isDeliveryOpen} />
                   </div>
                   {isDeliveryOpen && (
-                    <DeliveryInformationFields 
+                    <DeliveryInformationFields
                       onChange={handleChange}
                       orderForm={orderForm}
                     />
@@ -214,7 +218,7 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
 
                 </div>
               )}
-              
+
             </form >
           </div>
 
@@ -222,10 +226,10 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
             {(currentStep === 'delivery' || currentStep === 'confirm') && (
               <BackButton onClick={handleBackStepChange} />
             )}
-            
-            {(currentStep === 'myInfo' || currentStep === 'delivery') 
+
+            {(currentStep === 'myInfo' || currentStep === 'delivery')
               ? (
-                <NextButton 
+                <NextButton
                   onNext={handleNextStepChange}
                   disabled={isNextButtonDisabled}
                 />
@@ -234,12 +238,12 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
               )
             }
           </div>
-          
+
         </div>
 
-        <OrderList 
-          isOpen={isOrderListOpen} 
-          onToggle={() => setIsOrderListOpen(prev => !prev)}
+        <OrderList
+          isOpen={isOrderListOpen}
+          onToggle={handleOrderListToggle}
           cartItems={cartItems}
         />
       </main>

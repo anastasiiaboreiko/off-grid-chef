@@ -4,7 +4,7 @@ import { FilterByType } from "../../shared/ui/filters/filterByType";
 import { FilterByTime } from "../../shared/ui/filters/filterByTime";
 import { FilterByComplexity } from "../../shared/ui/filters/filterByComplexity";
 import { RecipeList } from "../../shared/ui/recipeList";
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { RecipesContext } from "../../shared/context/RecipesContext";
 import { Loader } from "../../shared/ui/loader";
 import { ErrorMessage } from "../../shared/ui/errorMessage";
@@ -24,26 +24,26 @@ export const RecipeListPage = () => {
   const location = useLocation();
   const pathname = location.pathname;
 
-  const getFilteredRecipes = () => {
-    return recipes.filter(recipe => {
-      if (powerFilter !== 'all' && recipe.category !== powerFilter) return false;
-      
-      if (typeFilter !== 'all' && recipe.type_of_dish !== typeFilter) return false;
+  const visibleRecipes = useMemo(
+    () =>
+      recipes.filter(recipe => {
+        if (powerFilter !== 'all' && recipe.category !== powerFilter) return false;
 
-      if (timeFilter !== 'all') {
-        const time = recipe.cooking_time;
-        if (timeFilter === '15' && time > 15) return false;
-        if (timeFilter === '30' && (time <= 15 || time > 30)) return false;
-        if (timeFilter === '60' && (time <= 30 || time > 60)) return false;
-      }
+        if (typeFilter !== 'all' && recipe.type_of_dish !== typeFilter) return false;
 
-      if (complexityFilter !== 'all' && recipe.complexity !== complexityFilter) return false;
+        if (timeFilter !== 'all') {
+          const time = recipe.cooking_time;
+          if (timeFilter === '15' && time > 15) return false;
+          if (timeFilter === '30' && (time <= 15 || time > 30)) return false;
+          if (timeFilter === '60' && (time <= 30 || time > 60)) return false;
+        }
 
-      return true;
-    });
-  };
+        if (complexityFilter !== 'all' && recipe.complexity !== complexityFilter) return false;
 
-  const visibleRecipes = getFilteredRecipes();
+        return true;
+      }),
+    [recipes, powerFilter, typeFilter, timeFilter, complexityFilter],
+  );
 
   return (
     <div className={styles.container}>
@@ -52,26 +52,26 @@ export const RecipeListPage = () => {
       </h1>
 
       <div className={styles.filters}>
-        <FilterByPower 
-          value={powerFilter} 
-          onChange={setPowerFilter} 
+        <FilterByPower
+          value={powerFilter}
+          onChange={setPowerFilter}
         />
 
         <div className={styles.addFilters}>
-          <FilterByType 
-            value={typeFilter} 
+          <FilterByType
+            value={typeFilter}
             onChange={setTypeFilter}
           />
-          <FilterByTime 
-            value={timeFilter} 
+          <FilterByTime
+            value={timeFilter}
             onChange={setTimeFilter}
           />
-          <FilterByComplexity 
-            value={complexityFilter} 
+          <FilterByComplexity
+            value={complexityFilter}
             onChange={setComplexityFilter}
           />
         </div>
-      
+
       </div>
 
       <h2 className={styles.additionalTitle}>Recommended Recipes</h2>
@@ -81,9 +81,9 @@ export const RecipeListPage = () => {
       {!loading && errorMessage && <ErrorMessage />}
 
       {!loading && !errorMessage && visibleRecipes.length > 0 && (
-        <RecipeList recipes={visibleRecipes}/>
+        <RecipeList recipes={visibleRecipes} />
       )}
-      
+
       {!loading && !errorMessage && visibleRecipes.length === 0 && recipes.length > 0 && (
         <NoResults pathname={pathname} />
       )}

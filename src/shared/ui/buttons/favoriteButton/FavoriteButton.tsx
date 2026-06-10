@@ -7,11 +7,11 @@ type Props = {
 };
 
 export const FavoriteButton: React.FC<Props> = ({ recipeId }) => {
-  const { isFavorite, toggleFavorite } = useContext(FavoritesContext);
-  const isFav = isFavorite(recipeId);
+  const { favorites, toggleFavorite } = useContext(FavoritesContext);
+  const isFav = favorites.includes(recipeId);
 
   return (
-    <button 
+    <button
       className={styles.favorite}
       onClick={(e) => {
         e.preventDefault();
@@ -19,7 +19,7 @@ export const FavoriteButton: React.FC<Props> = ({ recipeId }) => {
         toggleFavorite(recipeId);
       }}
     >
-      <span 
+      <span
         className={isFav ? styles.favorite__icon_active : styles.favorite__icon}
         aria-hidden="true"
       />

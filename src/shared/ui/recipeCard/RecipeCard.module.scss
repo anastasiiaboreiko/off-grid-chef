@@ -35,7 +35,7 @@
     object-fit: cover;
     border-radius: var.$border-radius;
     cursor: pointer;
-  
+
     @include mixins.on-tablet {
       height: 110px;
       width: 245px;
@@ -45,7 +45,7 @@
       width: 324px;
     }
   }
-  
+
   &__specs {
     position: absolute;
     width: 100%;
@@ -57,7 +57,7 @@
       width: 245px;
       top: 12px;
     }
-  
+
     @include mixins.on-desktop {
       width: 324px;
       top: 16px;
@@ -90,13 +90,13 @@
       height: 36px;
       line-height: 100%;
     }
-  
+
     @include mixins.on-desktop {
       height: 48px;
       line-height: 100%;
     }
   }
-  
+
   &__description {
     display: none;
 
@@ -104,7 +104,7 @@
       display: flex;
       box-sizing: content-box;
       padding-top: 4px;
-      margin: 0;  
+      margin: 0;
       color: var.$additional-text-color;
     }
 
@@ -130,4 +130,3 @@
     padding-bottom: 16px;
   }
 }
-

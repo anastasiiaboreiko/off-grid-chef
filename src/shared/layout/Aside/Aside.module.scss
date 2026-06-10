@@ -14,7 +14,7 @@
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
- 
+
   background-color: var.$background-color;
 
   @include mixins.on-tablet {
@@ -390,7 +390,7 @@
     @include mixins.on-tablet {
       width: 148px;
     }
-    
+
     @include mixins.on-desktop{
       width: 240px;
       justify-content: space-between;

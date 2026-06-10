@@ -9,7 +9,7 @@ type Props = {
 
 export const RecipesProvider: React.FC<Props> = ({ children }) => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {

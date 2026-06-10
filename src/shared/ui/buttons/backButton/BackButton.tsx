@@ -8,7 +8,7 @@ type Props = {
 
 export const BackButton = ({ onClick, isHidden = false, className = '' }: Props) => {
   return (
-    <button 
+    <button
       type="button"
       className={`
         ${styles.backButton}
