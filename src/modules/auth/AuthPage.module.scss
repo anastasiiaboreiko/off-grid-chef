@@ -4,7 +4,8 @@
 .authPage {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   background-color: var.$white-background-color;
 
   @include mixins.on-desktop {
@@ -222,6 +223,7 @@
     width: 96px;
     height: 32px;
     border: none;
+    margin-bottom: 24px;
     border-radius: var.$border-radius;
     color: var.$white-background-color;
     background-color: var.$primary-accent-color;
