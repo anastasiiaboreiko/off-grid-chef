@@ -1,17 +1,16 @@
-import { Outlet, useMatch, useNavigate} from 'react-router-dom';
+import { Outlet, useMatch, useNavigate } from 'react-router-dom';
 import styles from './Main.module.scss';
 import { Logo } from "../../ui/logo/Logo";
-import { useDeviceType } from "../../hooks/useDeviceType";
 import { BackButton } from "../../ui/buttons/backButton/BackButton";
 import { CloseButton } from "../../ui/buttons/closeButton";
 
 type Props = {
   isSidebarOpen: boolean;
   onBurgerClick: () => void;
+  isMobile: boolean;
 };
 
-export const Main: React.FC<Props> = ({ isSidebarOpen, onBurgerClick }) => {
-  const { isMobile } = useDeviceType();
+export const Main: React.FC<Props> = ({ isSidebarOpen, onBurgerClick, isMobile }) => {
   const navigate = useNavigate();
   const isRecipeDetailsPage = Boolean(useMatch('/recipes/:recipeId'));
 
@@ -19,17 +18,17 @@ export const Main: React.FC<Props> = ({ isSidebarOpen, onBurgerClick }) => {
     <div className={styles.main}>
       {isMobile && (
         <div className={styles.main__header}>
-          
-          <BackButton 
+
+          <BackButton
             onClick={() => navigate('/')}
             isHidden={!isRecipeDetailsPage}
           />
           <div className={styles.main__logo}>
             <Logo />
           </div>
-          {isSidebarOpen 
+          {isSidebarOpen
             ? (
-              <CloseButton 
+              <CloseButton
                 onClose={onBurgerClick}
                 ariaLabel="Close menu"
                 className={styles.main__menuButton}
@@ -48,18 +47,18 @@ export const Main: React.FC<Props> = ({ isSidebarOpen, onBurgerClick }) => {
               </button>
             )
           }
-         
+
         </div>
       )}
-      
+
       <div className={styles.main__content}>
         <Outlet />
       </div>
 
       {isMobile && (
-         <div className={styles.main__footer}></div>
+        <div className={styles.main__footer}></div>
       )}
-      
+
     </div>
   )
 };

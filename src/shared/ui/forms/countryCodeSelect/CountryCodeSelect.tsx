@@ -18,13 +18,13 @@ const options: { value: CountryCode; label: string }[] = [
 
 export const CounrtyCodeSelect = ({ value, onChange }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const selectRef = useRef<HTMLDivElement | null>(null); 
+  const selectRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        selectRef.current && 
-        !selectRef.current.contains(event.target as Node) 
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
       }

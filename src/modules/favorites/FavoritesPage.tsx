@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { RecipesContext } from '../../shared/context/RecipesContext';
 import { FavoritesContext } from '../../shared/context/FavoritesContextStore';
 import { RecipeList } from '../../shared/ui/recipeList';
@@ -12,12 +12,15 @@ export const FavoritesPage = () => {
   const location = useLocation();
   const pathname = location.pathname;
 
-  const favoriteRecipes = recipes.filter(recipe => favorites.includes(recipe.id));
+  const favoriteRecipes = useMemo(
+    () => recipes.filter(recipe => favorites.includes(recipe.id)),
+    [recipes, favorites],
+  );
 
   return (
     <div className={styles.favotites}>
       <h1 className={styles.title}>Favorite</h1>
-      
+
       {favoriteRecipes.length > 0 ? (
         <RecipeList recipes={favoriteRecipes} />
       ) : (

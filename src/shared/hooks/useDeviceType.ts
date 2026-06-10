@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-type DeviceType = { 
+type DeviceType = {
   isMobile: boolean;
   isTablet: boolean;
   isDesktop: boolean;

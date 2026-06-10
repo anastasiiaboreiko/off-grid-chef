@@ -7,14 +7,14 @@ type Props = {
   ariaLabel?: string;
 }
 
-export const CloseButton = ({ 
-  onClose, 
-  className = '', 
-  iconClassName = '', 
+export const CloseButton = ({
+  onClose,
+  className = '',
+  iconClassName = '',
   ariaLabel = 'Close',
 }: Props) => {
   return (
-    <button 
+    <button
       type="button"
       onClick={onClose}
       className={`${styles.closeButton} ${className}`}

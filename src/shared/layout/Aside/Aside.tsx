@@ -2,21 +2,21 @@ import { useState, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from './Aside.module.scss';
 import { Logo } from "../../ui/logo/Logo";
-import { useDeviceType } from "../../hooks/useDeviceType";
 import { AuthContext } from "../../context/AuthContext";
 
 type Props = {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+  isMobile: boolean;
+  isTablet: boolean;
+};
 
-export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
+export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen, isMobile, isTablet }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isMobile, isTablet } = useDeviceType();
   const { logout, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogout =  async () => {
+  const handleLogout = async () => {
     await logout();
     navigate('/auth');
   }
@@ -30,7 +30,7 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
   }
 
   return (
-    <aside 
+    <aside
       className={`
         ${styles.sidebar}
         ${isSidebarOpen ? styles.sidebar__open : ''}
@@ -45,8 +45,8 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
             aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
             aria-expanded={isSidebarOpen}
           >
-            <Logo 
-              option={isTablet && !isSidebarOpen ? 'compact' : 'default'} 
+            <Logo
+              option={isTablet && !isSidebarOpen ? 'compact' : 'default'}
             />
           </button>
         )}
@@ -54,50 +54,50 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
       <nav className={styles.sidebar__nav}>
         <ul className={styles.sidebar__list}>
-          <li 
+          <li
             className={styles.sidebar__item}
             onClick={handleSidebarToggle}
           >
-            <NavLink 
+            <NavLink
               to="/"
-              className={({ isActive }) => 
-                isActive 
-                  ? styles.sidebar__activeLink 
+              className={({ isActive }) =>
+                isActive
+                  ? styles.sidebar__activeLink
                   : styles.sidebar__link
-              } 
-              >
+              }
+            >
               <span className={styles.sidebar__iconHome} />
               <h4 className={styles.sidebar__title}>Home</h4>
             </NavLink>
           </li>
 
-          <li 
+          <li
             className={styles.sidebar__item}
             onClick={handleSidebarToggle}
           >
-            <NavLink 
+            <NavLink
               to="/cart"
-              className={({ isActive }) => 
-                isActive 
-                  ? styles.sidebar__activeLink 
+              className={({ isActive }) =>
+                isActive
+                  ? styles.sidebar__activeLink
                   : styles.sidebar__link
-              } 
+              }
             >
               <span className={styles.sidebar__iconCart} />
               <h4 className={styles.sidebar__title}>Cart</h4>
             </NavLink>
           </li>
-          <li 
+          <li
             className={styles.sidebar__item}
             onClick={handleSidebarToggle}
           >
-            <NavLink 
+            <NavLink
               to="/favorites"
-              className={({ isActive }) => 
-                isActive 
-                  ? styles.sidebar__activeLink 
+              className={({ isActive }) =>
+                isActive
+                  ? styles.sidebar__activeLink
                   : styles.sidebar__link
-              } 
+              }
             >
               <span className={styles.sidebar__iconFavorite} />
               <h4 className={styles.sidebar__title}>Favorite</h4>
@@ -110,35 +110,35 @@ export const Aside: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
       <footer className={styles.sidebar__footer}>
         {isOpen && (!isTablet || isSidebarOpen) && (
           <div className={styles.logout}>
-            <button  
+            <button
               type='button'
-              className={styles.logout__button} 
+              className={styles.logout__button}
               onClick={handleLogout}
             >
               <p className={`body-text`}>Logout</p>
-              <span className={styles.logout__icon} aria-hidden="true"/>
+              <span className={styles.logout__icon} aria-hidden="true" />
             </button>
           </div>
         )}
-        
+
 
         <div className={styles.user}>
-          <span 
-            className={styles.user__icon} 
+          <span
+            className={styles.user__icon}
             onClick={handleSidebarToggle}
           />
-            <div className={styles.user__block} onClick={handleClick}>
-              <p className={`body-text ${styles.user__name}`}>{user?.full_name}</p>
-              <span 
-                className={`
-                  ${styles.user__arrow} 
+          <div className={styles.user__block} onClick={handleClick}>
+            <p className={`body-text ${styles.user__name}`}>{user?.full_name}</p>
+            <span
+              className={`
+                  ${styles.user__arrow}
                   ${!isOpen ? styles.user__arrow_open : ''}
-                `} 
-              />
-            </div>
-           
+                `}
+            />
+          </div>
+
         </div>
-        
+
       </footer>
     </aside>
   );

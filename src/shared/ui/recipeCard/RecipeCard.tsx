@@ -6,17 +6,18 @@ import { ComplexityDetails } from "../complexityDetails/ComplexityDetails";
 import { FavoriteButton } from "../buttons/favoriteButton/FavoriteButton";
 import { TimeDetails } from "../timeDetails/TimeDetails";
 import placeholderImage from "../../../img/placeholder.svg";
+import { memo } from "react";
 
-type Props= {
+type Props = {
   recipe: Recipe;
 }
 
-export const RecipeCard: React.FC<Props> = ({ recipe }) => {
+export const RecipeCard: React.FC<Props> = memo(({ recipe }) => {
   return (
     <div className={styles.recipeCard}>
 
-      <Link 
-        to={`/recipes/${recipe.id}`} 
+      <Link
+        to={`/recipes/${recipe.id}`}
         className={styles.cardLink}
       >
         <div className={styles.pictureBlock}>
@@ -27,10 +28,10 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
           />
 
           <div className={styles.pictureBlock__specs}>
-            <TimeDetails recipe={recipe}/>
+            <TimeDetails recipe={recipe} />
             <FavoriteButton recipeId={recipe.id} />
           </div>
-        
+
         </div>
         <div className={styles.textBlock}>
           <h4 className={styles.textBlock__title}>{recipe.title}</h4>
@@ -41,9 +42,9 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
 
       <div className={styles.detailsBlock}>
         <PowerDetails recipe={recipe} />
-        <ComplexityDetails recipe={recipe}/>
+        <ComplexityDetails recipe={recipe} />
       </div>
 
     </div>
   );
-}
+});

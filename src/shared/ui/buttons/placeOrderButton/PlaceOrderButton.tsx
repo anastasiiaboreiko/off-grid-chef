@@ -7,7 +7,7 @@ type Props = {
 
 export const PlaceOrderButton = ({ onClick, type = 'button' }: Props) => {
   return (
-    <button 
+    <button
       type={type}
       className={`button-text ${styles.button}`}
       onClick={onClick}

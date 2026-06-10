@@ -7,7 +7,7 @@ type AddRecipeToCartResponse = {
 }
 
 export async function addRecipeToCart(
-  recipeId: number, 
+  recipeId: number,
   accessToken: string,
   ingredientIds: number[],
 ): Promise<AddRecipeToCartResponse> {

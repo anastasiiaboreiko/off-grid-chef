@@ -41,11 +41,11 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-  
+
     @include mixins.on-tablet {
       padding-block: 40px;
     }
-  
+
     @include mixins.on-desktop {
       padding-block: 56px;
     }
@@ -134,7 +134,7 @@
       -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
       -webkit-text-fill-color: var.$primary-text-color;
     }
-  
+
     &:-webkit-autofill:focus {
       -webkit-box-shadow: 0 0 0 1000px var.$input-background-color inset;
       -webkit-text-fill-color: var.$primary-text-color;
@@ -187,23 +187,23 @@
       background-color: var.$white-background-color;
       cursor: pointer;
     }
-  
+
     &_input:checked {
       background-color: var.$primary-accent-color;
       border-color: var.$primary-accent-color;
     }
-  
+
     &_input:checked::after {
       content: '';
       display: block;
       width: 100%;
       height: 100%;
-  
+
       mask-image: url('../../img/icons/check.svg');
       mask-size: 12px 12px;
       mask-position: center;
       mask-repeat: no-repeat;
-  
+
       background-color: var.$white-background-color;
     }
 

@@ -14,6 +14,43 @@ type Errors = {
   detail?: string;
 }
 
+const getFieldErrors = (error: unknown) => {
+  if (typeof error !== 'object' || error === null) {
+    return { detail: 'Something went wrong' };
+  }
+
+  const errors: Errors = {};
+
+  if (
+    typeof error === 'object' &&
+    error !== null &&
+    'detail' in error) {
+    errors.detail = 'Invalid email or password';
+  }
+
+  if (
+    typeof error === 'object' &&
+    error !== null &&
+    'email' in error) {
+    errors.email = 'This email is already registered.';
+  }
+
+  if (
+    typeof error === 'object' &&
+    error !== null &&
+    'password' in error) {
+    errors.password = 'Ensure this field has at least 6 characters.';
+  }
+
+  if (
+    typeof error === 'object' &&
+    error !== null &&
+    'full_name' in error) {
+    errors.full_name = 'This field is required.';
+  }
+  return errors;
+}
+
 export const AuthPage = () => {
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState<string>('');
@@ -24,58 +61,21 @@ export const AuthPage = () => {
   const [fieldErrors, setFieldErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const {login, signup} = useContext(AuthContext);
+  const { login, signup } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const isLoginValid = email.trim() !== '' && password.trim() !== '';
 
-  const isRegistrationValid = 
-    full_name.trim() !== '' && 
-    email.trim() !== '' && 
-    password.trim() !== '' && 
+  const isRegistrationValid =
+    full_name.trim() !== '' &&
+    email.trim() !== '' &&
+    password.trim() !== '' &&
     isChecked;
 
-  const isSubmitDisabled = 
-  mode === 'login' 
-    ? !isLoginValid 
-    : !isRegistrationValid;
-
-  const getFieldErrors = (error: unknown) => {
-    if (typeof error !== 'object' || error === null ) {
-      return { detail: 'Something went wrong' };
-    }
-
-    const errors: Errors = {};
-
-    if (
-      typeof error === 'object' && 
-      error !== null &&
-      'detail' in error) {
-        errors.detail = 'Invalid email or password';
-    }
-
-    if (
-      typeof error === 'object' && 
-      error !== null &&
-      'email' in error) {
-        errors.email = 'This email is already registered.';
-    }
-
-    if (
-      typeof error === 'object' && 
-      error !== null &&
-      'password' in error) {
-        errors.password = 'Ensure this field has at least 6 characters.';
-    }
-
-    if (
-      typeof error === 'object' && 
-      error !== null &&
-      'full_name' in error) {
-        errors.full_name = 'This field is required.';
-    }
-    return errors;
-  }
+  const isSubmitDisabled =
+    mode === 'login'
+      ? !isLoginValid
+      : !isRegistrationValid;
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -85,14 +85,14 @@ export const AuthPage = () => {
     try {
       if (mode === 'login') {
         await login({
-          email, 
+          email,
           password
         });
-      } 
+      }
       if (mode === 'signup') {
         await signup({
           email,
-          password, 
+          password,
           full_name,
         })
       }
@@ -110,7 +110,7 @@ export const AuthPage = () => {
       <div className={styles.authPage__container}>
         <Logo option="default" />
         <h1 className={styles.title}>Welcome to Web App</h1>
-        {mode === 'login' 
+        {mode === 'login'
           ? <h2 className={styles.subTitle}>Log in to your account</h2>
           : <h2 className={styles.subTitle}>Create an account</h2>
         }
@@ -119,36 +119,36 @@ export const AuthPage = () => {
           <p className={`small-text ${styles.error}`}>{fieldErrors.detail}</p>
         )}
 
-        <form 
+        <form
           onSubmit={handleSubmit}
           className={styles.form}
         >
-        {mode === 'signup' && (
+          {mode === 'signup' && (
             <label className={`main-text ${styles.form__label}`}>
               Full name
-              <input 
+              <input
                 className={styles.form__input}
-                name="full_name" 
-                type="text" 
+                name="full_name"
+                type="text"
                 value={full_name}
                 onChange={(event) => setFull_Name(event.target.value)}
                 required
                 placeholder="Albert Flores"
               />
-               {fieldErrors.full_name && (
-                 <p className={`small-text ${styles.error}`}>{fieldErrors.full_name}</p>
-               )}
+              {fieldErrors.full_name && (
+                <p className={`small-text ${styles.error}`}>{fieldErrors.full_name}</p>
+              )}
             </label>
           )}
-      
+
 
           <label className={`main-text ${styles.form__label}`}>
             Email
-            <input 
+            <input
               className={styles.form__input}
               id="email"
-              name="email" 
-              type="email" 
+              name="email"
+              type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               required
@@ -163,22 +163,22 @@ export const AuthPage = () => {
             <div className={styles.form__passwordWrapper}>
               <input
                 className={styles.form__input}
-                name="password" 
+                name="password"
                 type={isPasswordVisible ? 'text' : 'password'}
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 required
                 placeholder="Enter your password"
               />
-              <button 
+              <button
                 type="button"
                 className={styles.form__eyeButton}
-                onClick={() => setIsPasswordVisible(prev => ! prev)}
+                onClick={() => setIsPasswordVisible(prev => !prev)}
                 aria-label={isPasswordVisible ? 'Hide password' : 'Show password'}
               >
-                <img  
+                <img
                   className={styles.form__eyeImage}
-                  src={isPasswordVisible ? eyeIcon : eyeOffIcon} 
+                  src={isPasswordVisible ? eyeIcon : eyeOffIcon}
                   alt="password button"
                 />
               </button>
@@ -188,10 +188,10 @@ export const AuthPage = () => {
             )}
           </label>
 
-          {mode === 'signup' 
+          {mode === 'signup'
             && (
               <label className={styles.form__checkbox}>
-                <input 
+                <input
                   type="checkbox"
                   checked={isChecked}
                   className={styles.form__checkbox_input}
@@ -199,14 +199,14 @@ export const AuthPage = () => {
                 />
                 <span className={`small-text ${styles.form__checkbox_text}`}>I accept the Terms of Use and Privacy Policy.</span>
               </label>
-            ) 
-            
-              // <p className={`body-text ${styles.form__question}`}>Forgot Password?</p>
-        
+            )
+
+            // <p className={`body-text ${styles.form__question}`}>Forgot Password?</p>
+
           }
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className={`button-text ${styles.form__submitButton}`}
             disabled={isSubmitDisabled || isSubmitting}
           >
@@ -214,19 +214,19 @@ export const AuthPage = () => {
               ? <Loader />
               : mode === 'login' ? 'Login' : 'Sign up'}
           </button>
-        
+
         </form>
 
-        {mode === 'login' 
+        {mode === 'login'
           ? (
             <div className={styles.modeChoosing}>
               <p className={`small-text ${styles.modeChoosing__text}`}>
                 Don't have an account?
               </p>
-              <button 
-                type="button" 
+              <button
+                type="button"
                 onClick={() => {
-                  setMode('signup'); 
+                  setMode('signup');
                   setFieldErrors({});
                 }}
                 className={`body-text ${styles.modeChoosing__button}`}
@@ -235,13 +235,13 @@ export const AuthPage = () => {
               </button>
             </div>
           )
-          : ( 
-            <div className={styles.modeChoosing}> 
+          : (
+            <div className={styles.modeChoosing}>
               <p className={`small-text ${styles.modeChoosing__text}`}>
                 Already have an account?
               </p>
-              <button 
-                type="button" 
+              <button
+                type="button"
                 onClick={() => {
                   setMode('login');
                   setFieldErrors({});
@@ -250,11 +250,11 @@ export const AuthPage = () => {
               >
                 Login
               </button>
-            </div> 
+            </div>
           )
         }
       </div>
     </div>
-    
+
   )
 }

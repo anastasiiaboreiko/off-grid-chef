@@ -11,12 +11,12 @@
 
   &__default {
     width: 110px;
-  
+
     @include mixins.on-desktop {
       width: 192px;
     }
   }
-  
+
   &__compact {
     width: 32px;
     height: 32px;

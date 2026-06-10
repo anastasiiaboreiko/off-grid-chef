@@ -1,27 +1,28 @@
 import styles from './OrderCartItem.module.scss';
 import type { CartItemType } from "../../types/CartItemType";
+import { memo } from "react";
 
 type Props = {
   cartItem: CartItemType;
 }
 
-export const OrderCartItem = ({ cartItem }: Props) => {
+export const OrderCartItem = memo(({ cartItem }: Props) => {
   return (
     <li className={styles.listItem}>
       <div className={styles.listItem__firstBlock}>
-        <img 
+        <img
           className={styles.listItem__itemImage}
-          src={cartItem.image} 
-          alt="cart item image" 
+          src={cartItem.image}
+          alt="cart item image"
         />
-      
+
         <p className={`body-text ${styles.listItem__name}`}>
           {cartItem.ingredient_name}
         </p>
       </div>
       <p className={`main-text ${styles.listItem__quantity}`}>
         {cartItem.quantity} {cartItem.unit}
-      </p> 
+      </p>
     </li>
   )
-}
+});

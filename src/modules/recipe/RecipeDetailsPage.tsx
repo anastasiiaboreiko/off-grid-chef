@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import styles from './RecipeDetailsPage.module.scss';
 import { RecipesContext } from "../../shared/context/RecipesContext";
 import { useMatch, useNavigate, useParams } from "react-router-dom";
@@ -23,9 +23,13 @@ export const RecipeDetailsPage = () => {
   const navigate = useNavigate();
   const isRecipeDetailesPage = Boolean(useMatch('/recipes/:recipeId'))
 
-  const currentRecipe = recipeId
-    ? recipes.find(recipe => recipe.id === Number(recipeId))
-    : undefined;
+  const currentRecipe = useMemo(
+    () =>
+      recipeId
+        ? recipes.find(recipe => recipe.id === Number(recipeId))
+        : undefined,
+    [recipeId, recipes],
+  );
 
   const recipeIngredients = currentRecipe?.ingredients;
 
@@ -34,7 +38,7 @@ export const RecipeDetailsPage = () => {
   const removeStepNumber = (value: string) =>
     value.replace(/^\d+\.\s/, "");
 
-  const handleToggleIngredient = (ingredientId: number) => {
+  const handleToggleIngredient = useCallback((ingredientId: number) => {
     setExcludedIngredientIds(prev => {
       const nextExcludedIngredientIds = new Set(prev);
 
@@ -46,7 +50,7 @@ export const RecipeDetailsPage = () => {
 
       return nextExcludedIngredientIds;
     });
-  };
+  }, []);
 
   const handleAddToCart = async () => {
     setCartMessage('');
@@ -78,8 +82,8 @@ export const RecipeDetailsPage = () => {
   };
 
   useEffect(() => {
-    if(!cartMessage) {
-      return; 
+    if (!cartMessage) {
+      return;
     }
 
     const timerId = window.setTimeout(() => {
@@ -94,7 +98,7 @@ export const RecipeDetailsPage = () => {
   return (
     <div className={styles.container}>
       {!isMobile && (
-        <BackButton 
+        <BackButton
           onClick={() => navigate('/')}
           isHidden={!isRecipeDetailesPage}
         />
@@ -103,10 +107,10 @@ export const RecipeDetailsPage = () => {
       <div className={styles.recipe}>
         <div className={styles.recipe__mainBlock}>
           <div className={styles.pictureBlock}>
-            <img 
+            <img
               className={styles.picture}
-              src={currentRecipe?.image} 
-              alt="recipe picture" 
+              src={currentRecipe?.image}
+              alt="recipe picture"
             />
 
             <div className={styles.specs}>
@@ -115,7 +119,7 @@ export const RecipeDetailsPage = () => {
               )}
             </div>
           </div>
-          
+
           <div className={styles.mainInfo}>
             <h2 className={styles.mainInfo__title}>
               {currentRecipe?.title}
@@ -127,7 +131,7 @@ export const RecipeDetailsPage = () => {
               {currentRecipe && (
                 <>
                   <PowerDetails recipe={currentRecipe} />
-                  <TimeDetails recipe={currentRecipe}/>
+                  <TimeDetails recipe={currentRecipe} />
                   <TypeDetails recipe={currentRecipe} />
                   <ComplexityDetails recipe={currentRecipe} />
                 </>
@@ -149,10 +153,10 @@ export const RecipeDetailsPage = () => {
                   <p className={`body-text ${styles.preparation__instruction}`}>
                     {removeStepNumber(instruction.text)}
                   </p>
-              </div>
+                </div>
               ))
             )}
-           
+
           </div>
 
           <div className={styles.ingredients}>
@@ -175,13 +179,13 @@ export const RecipeDetailsPage = () => {
               <div className={styles.buttonInfo}>
                 <span className={styles.buttonInfo__icon} />
               </div>
-              
-              <button 
+
+              <button
                 className={`button-text ${styles.buttonAddToCart}`}
                 onClick={handleAddToCart}
               >
                 Add to cart
-              </button> 
+              </button>
               {cartMessage && (
                 <div className={styles.ingredients__toast}>
                   <p className={`small-text ${styles.ingredients__message}`}>

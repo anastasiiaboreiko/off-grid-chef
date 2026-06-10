@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from './OrderSuccessModal.module.scss';
 
 type Props = {
@@ -17,25 +18,25 @@ const generateOrderNumber = () => {
 }
 
 export const OrderSuccessModal = ({ onClose }: Props) => {
-  const randomOrderNumber = generateOrderNumber();
+  const [randomOrderNumber] = useState(generateOrderNumber);
 
   return (
     <div className={styles.successModal}>
       <div className={styles.successModal__top}>
         <div className={styles.successModal__image}>
-          <span className={styles.successModal__image_icon}/>
+          <span className={styles.successModal__image_icon} />
         </div>
       </div>
       <p className={`secondary-text ${styles.successModal__text}`}>
-        Order 
-        <strong className={styles.successModal__text_bold}>#{randomOrderNumber}</strong> 
+        Order
+        <strong className={styles.successModal__text_bold}>#{randomOrderNumber}</strong>
         has been received!
-        <br/>
+        <br />
         Thank you for choosing our service
       </p>
 
-      <button 
-        type="button" 
+      <button
+        type="button"
         onClick={onClose}
         className={`button-text ${styles.successModal__button}`}
       >
@@ -43,5 +44,4 @@ export const OrderSuccessModal = ({ onClose }: Props) => {
       </button>
     </div>
   )
-
-}
+};

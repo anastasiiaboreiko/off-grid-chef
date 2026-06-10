@@ -1,5 +1,5 @@
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { User } from "../types/User";
 import { getCurrentUser, loginUser, logoutUser, signupUser } from "../api/apiAuth";
 import { AuthContext } from "./AuthContext";
@@ -24,14 +24,14 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       }
 
       try {
-        // if authorized get the user 
+        // if authorized get the user
         const currentUser = await getCurrentUser(accessToken);
         setUser(currentUser);
-      } catch { // if not authorized we need to clean localStorage 
-        // there might be another unvalid token 
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('refreshToken');
-          setUser(null);
+      } catch { // if not authorized we need to clean localStorage
+        // there might be another unvalid token
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        setUser(null);
       } finally {
         setIsLoading(false);
       }
@@ -40,48 +40,63 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     void checkAuth();
   }, [])
 
-  const login = async (data: Pick<UserRegistration, "email" | "password">) => {
-    const tokens = await loginUser(data);
-    // when the user was logined we save tokens in localStorage 
-    localStorage.setItem('accessToken', tokens.access);
-    localStorage.setItem('refreshToken', tokens.refresh);
+  const login = useCallback(
+    async (data: Pick<UserRegistration, "email" | "password">) => {
+      const tokens = await loginUser(data);
+      // when the user was logined we save tokens in localStorage
+      localStorage.setItem('accessToken', tokens.access);
+      localStorage.setItem('refreshToken', tokens.refresh);
 
-    const currentUser = await getCurrentUser(tokens.access);
-    setUser(currentUser);
-  };
+      const currentUser = await getCurrentUser(tokens.access);
+      setUser(currentUser);
 
-  const logout = async () => {
-    const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
+    },
+    [],
+  );
 
-    if (accessToken && refreshToken) {
-      await logoutUser(accessToken, refreshToken)
-    }
+  const logout = useCallback(
+    async () => {
+      const accessToken = localStorage.getItem('accessToken');
+      const refreshToken = localStorage.getItem('refreshToken');
 
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
+      if (accessToken && refreshToken) {
+        await logoutUser(accessToken, refreshToken)
+      }
 
-    setUser(null);
-  };
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
 
-  const signup = async (data: UserRegistration) => {
-    await signupUser(data);
-    const dataForLogin = {
-      email: data.email,
-      password: data.password,
-    }
+      setUser(null);
+    },
+    [],
+  );
 
-    await login(dataForLogin)
-  };
 
-  const value = {
-    user,
-    isAuthenticated: Boolean(user), // check if user true or false 
-    isLoading,  
-    login,
-    logout,
-    signup
-  }
+  const signup = useCallback(
+    async (data: UserRegistration) => {
+      await signupUser(data);
+      const dataForLogin = {
+        email: data.email,
+        password: data.password,
+      }
+
+      await login(dataForLogin)
+    },
+    [login],
+  );
+
+
+  const value = useMemo(
+    () => ({
+      user,
+      isAuthenticated: Boolean(user), // check if user true or false
+      isLoading,
+      login,
+      logout,
+      signup
+    }),
+    [user, isLoading, login, logout, signup],
+  );
 
   return (
     <AuthContext.Provider value={value}>
@@ -89,4 +104,3 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     </AuthContext.Provider>
   )
 }
-
