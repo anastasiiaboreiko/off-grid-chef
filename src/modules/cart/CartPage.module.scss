@@ -22,7 +22,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 24px;
-  
+
   @include mixins.on-desktop {
     padding-bottom: 32px;
   }
@@ -47,7 +47,7 @@
   display: grid;
   gap: 12px;
   margin-bottom: 32px;
-  
+
 
   @include mixins.on-tablet {
     grid-template-columns: repeat(2, minmax(308px, 1fr));
@@ -86,4 +86,3 @@
     color: var.$light-grey-color;
   }
 }
-

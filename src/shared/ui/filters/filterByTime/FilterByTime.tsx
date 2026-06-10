@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import type { FilterTime } from "../../../types/FilterTime";
 import styles from './FilterByTime.module.scss';
 import { ArrowOpen } from "../../buttons/arrowOpen";
@@ -15,14 +15,14 @@ const options: { value: FilterTime; label: string }[] = [
   { value: '60', label: '30-60 min' },
 ];
 
-export const FilterByTime: React.FC<Props> = ({ value, onChange }) => {
+export const FilterByTime: React.FC<Props> = memo(({ value, onChange }) => {
   const [isArrowOpen, setIsArrowOpen] = useState<boolean>(false);
   const selectRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        selectRef.current && 
+        selectRef.current &&
         !selectRef.current.contains(event.target as Node)
       ) {
         setIsArrowOpen(false);
@@ -40,9 +40,9 @@ export const FilterByTime: React.FC<Props> = ({ value, onChange }) => {
     <div className={styles.filter}>
       <p className={`body-text ${styles.title}`}>Cooking time</p>
       <div className={styles.selectWrapper} ref={selectRef}>
-        <div 
-           className={styles.select}
-           onClick={() => setIsArrowOpen(prev => !prev)}
+        <div
+          className={styles.select}
+          onClick={() => setIsArrowOpen(prev => !prev)}
         >
           <span className={`body-text ${styles.value}`}>
             {options.find(option => option.value === value)?.label}
@@ -70,4 +70,4 @@ export const FilterByTime: React.FC<Props> = ({ value, onChange }) => {
       </div>
     </div>
   );
-}
+});

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useMemo, type ReactNode } from 'react';
 import { FavoritesContext } from './FavoritesContextStore';
 
 export const FavoritesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -16,20 +16,29 @@ export const FavoritesProvider: React.FC<{ children: ReactNode }> = ({ children 
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  const toggleFavorite = (id: number) => {
-    setFavorites(prev => {
-      if (prev.includes(id)) {
-        return prev.filter(favId => favId !== id);
-      } else {
-        return [...prev, id];
-      }
-    });
-  };
+  const toggleFavorite = useCallback(
+    (id: number) => {
+      setFavorites(prev => {
+        if (prev.includes(id)) {
+          return prev.filter(favId => favId !== id);
+        } else {
+          return [...prev, id];
+        }
+      });
+    },
+    [],
+  );
 
-  const isFavorite = (id: number) => favorites.includes(id);
+  const value = useMemo(
+    () => ({
+      favorites,
+      toggleFavorite,
+    }),
+    [favorites, toggleFavorite],
+  );
 
   return (
-    <FavoritesContext.Provider value={{ favorites, toggleFavorite, isFavorite }}>
+    <FavoritesContext.Provider value={value}>
       {children}
     </FavoritesContext.Provider>
   );

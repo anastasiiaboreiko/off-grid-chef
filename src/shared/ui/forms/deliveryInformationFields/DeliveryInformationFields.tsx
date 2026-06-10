@@ -12,17 +12,17 @@ export const DeliveryInformationFields = ({ orderForm, onChange }: Props) => {
   return (
     <fieldset className={styles.delivery}>
       <div className={styles.delivery__line}>
-        <label 
+        <label
           className={`
-            main-text 
+            main-text
             ${styles.delivery__label}
             ${styles.delivery__label_city}
           `}
         >
           City
-          <input 
+          <input
             className={`body-text ${styles.delivery__input}`}
-            type="text" 
+            type="text"
             name="city"
             value={orderForm.city}
             onChange={onChange}
@@ -30,17 +30,17 @@ export const DeliveryInformationFields = ({ orderForm, onChange }: Props) => {
           />
         </label>
 
-        <label 
+        <label
           className={`
-            main-text 
+            main-text
             ${styles.delivery__label}
             ${styles.delivery__label_street}
           `}
         >
           Street
-          <input 
+          <input
             className={`body-text ${styles.delivery__input}`}
-            type="text" 
+            type="text"
             name="street"
             value={orderForm.street}
             placeholder="T. Shevchenka"
@@ -48,13 +48,13 @@ export const DeliveryInformationFields = ({ orderForm, onChange }: Props) => {
           />
         </label>
       </div>
-    
+
       <div className={styles.delivery__line}>
         <label className={`main-text ${styles.delivery__label}`}>
           Home
-          <input 
+          <input
             className={`body-text ${styles.delivery__input}`}
-            type="text" 
+            type="text"
             name="home"
             value={orderForm.home}
             onChange={onChange}
@@ -64,9 +64,9 @@ export const DeliveryInformationFields = ({ orderForm, onChange }: Props) => {
 
         <label className={`main-text ${styles.delivery__label}`}>
           Entrance
-          <input 
+          <input
             className={`body-text ${styles.delivery__input}`}
-            type="text" 
+            type="text"
             name="entrance"
             value={orderForm.entrance}
             onChange={onChange}
@@ -76,9 +76,9 @@ export const DeliveryInformationFields = ({ orderForm, onChange }: Props) => {
 
         <label className={`main-text ${styles.delivery__label}`}>
           Apartment
-          <input 
+          <input
             className={`body-text ${styles.delivery__input}`}
-            type="text" 
+            type="text"
             name="apartment"
             value={orderForm.apartment}
             onChange={onChange}
@@ -86,11 +86,11 @@ export const DeliveryInformationFields = ({ orderForm, onChange }: Props) => {
           />
         </label>
       </div>
-    
+
 
       <label className={`main-text ${styles.delivery__label}`}>
         Comment (Optional)
-        <textarea 
+        <textarea
           className={`body-text ${styles.delivery__textarea}`}
           name="comment"
           value={orderForm.comment}

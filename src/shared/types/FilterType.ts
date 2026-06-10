@@ -1,1 +1,1 @@
-export type FilterType = 'all' | 'breakfast' | 'lunch' |'dinner';
+export type FilterType = 'all' | 'breakfast' | 'lunch' | 'dinner';

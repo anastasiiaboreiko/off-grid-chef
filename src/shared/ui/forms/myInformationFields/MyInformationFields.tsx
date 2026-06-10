@@ -10,8 +10,8 @@ type Props = {
   onCountryCodeChange: (value: OrderFormData['country_code']) => void;
 }
 
-export const MyInformationFields = ({ 
-  orderForm, 
+export const MyInformationFields = ({
+  orderForm,
   onChange,
   onCountryCodeChange,
 }: Props) => {
@@ -19,9 +19,9 @@ export const MyInformationFields = ({
     <fieldset className={styles.myInfo}>
       <label className={`main-text ${styles.myInfo__label}`}>
         Full Name
-        <input 
+        <input
           className={`body-text ${styles.myInfo__input}`}
-          type="text" 
+          type="text"
           name="full_name"
           value={orderForm.full_name}
           onChange={onChange}
@@ -31,9 +31,9 @@ export const MyInformationFields = ({
 
       <label className={`main-text ${styles.myInfo__label}`}>
         Email
-        <input 
+        <input
           className={`body-text ${styles.myInfo__input}`}
-          type="email" 
+          type="email"
           name="email"
           value={orderForm.email}
           placeholder="al.flores@gmail.com"
@@ -41,26 +41,26 @@ export const MyInformationFields = ({
         />
       </label>
 
-      <label 
+      <label
         className={`main-text ${styles.myInfo__label}`}
       >
         Mobile phone
         <div className={styles.myInfo__mobilePhone}>
-          <CounrtyCodeSelect 
-            value={orderForm.country_code} 
+          <CounrtyCodeSelect
+            value={orderForm.country_code}
             onChange={onCountryCodeChange}
           />
-          <input 
+          <input
             className={`body-text ${styles.myInfo__input}`}
-            type="text" 
+            type="text"
             name="phone_number"
             value={orderForm.phone_number}
             onChange={onChange}
             placeholder="XX XXX XXXX"
           />
         </div>
-      
-        </label>
+
+      </label>
     </fieldset>
   )
 }
