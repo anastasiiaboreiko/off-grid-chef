@@ -17,14 +17,20 @@ Off-Grid Chef is a recipe discovery web application designed to help users find 
 - Manage cart contents
 - Demo checkout functionality
 - Responsive design for mobile, tablet, and desktop devices
-  
+---
 ## Technologies
+Frontend
 - React
 - TypeScript
 - React Router
-- REST API
+- SaSS
 - Vite
-- GitHub Pages
+
+Backend
+- Django REST Framework
+- JWT Authentication
+- REST API
+- API Documentation
   
 ## Development Principles
 - Component-based architecture
