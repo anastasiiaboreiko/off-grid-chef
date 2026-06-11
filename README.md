@@ -1,6 +1,43 @@
 # Off-Grid_Chef
 
-Local React + Django application for browsing recipes that work with or without power.
+Off-Grid Chef is a recipe discovery web application designed to help users find suitable meals based on electricity availability, cooking time, meal type, and recipe difficulty. The platform was inspired by real-life situations where access to electricity may be limited, making meal planning more challenging.
+
+🔗 **Live Demo:** [Off-Grid_Chef](https://anastasiiaboreiko.github.io/off-grid-chef/)  
+🎨 **Design:** [Off-Grid_Chef_Figma Design](https://www.figma.com/design/kFtngTSFurXaOWIluGSNOK/Team-Project?node-id=1968-2308&p=f&t=9jQLknT8yJDIuIIH-0)  
+
+## Features
+- Browse a collection of recipes
+- Filter recipes by:
+  -- Electricity availability
+  -- Cooking time
+  -- Meal type
+  -- Difficulty level
+- View detailed recipe information
+- Add ingredients to a shopping cart
+- Manage cart contents
+- Demo checkout functionality
+- Responsive design for mobile, tablet, and desktop devices
+  
+## Technologies
+- React
+- TypeScript
+- React Router
+- REST API
+- Vite
+- GitHub Pages
+  
+## Development Principles
+- Component-based architecture
+- Responsive and mobile-friendly design
+- Reusable UI components
+- Type-safe development with TypeScript
+- Clean and maintainable codebase
+- Modern React practices and hooks
+- Client-side routing with React Router
+- API integration and asynchronous data handling
+
+---
+### Local React + Django application for browsing recipes that work with or without power.
 
 ## Requirements
 
