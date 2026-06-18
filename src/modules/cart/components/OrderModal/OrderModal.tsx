@@ -24,8 +24,8 @@ const orderSteps: OrderStep[] = ['myInfo', 'delivery', 'confirm'];
 
 export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
   const [isOrderListOpen, setIsOrderListOpen] = useState(false);
-  const [isMyInfoOpen, setIsMyInfoOpen] = useState(false);
-  const [isDeliveryOpen, setIsDeliveryOpen] = useState(false);
+  const [isMyInfoOpen, setIsMyInfoOpen] = useState(true);
+  const [isDeliveryOpen, setIsDeliveryOpen] = useState(true);
   const [currentStep, setCurrentStep] = useState<OrderStep>('myInfo');
 
   const { user } = useContext(AuthContext);
@@ -132,8 +132,6 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
     setIsOrderListOpen(prev => !prev);
   }, []);
 
-  const handleSubmit = () => { };
-
   return (
     <div className={styles.orderModal}>
       <header className={styles.orderModal__header}>
@@ -158,12 +156,11 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
               ))}
             </div>
             <h3 className={styles.title}>{stepTitles[currentStep]}</h3>
-            <CartButton isOpen={() => setIsOrderListOpen(true)} />
+            <CartButton onOpen={() => setIsOrderListOpen(true)} />
           </div>
 
           <div className={styles.orderDetails__content}>
             <form
-              onSubmit={handleSubmit}
               className={styles.form}
             >
               {currentStep === 'myInfo' && (
@@ -183,7 +180,8 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
 
               {currentStep === 'confirm' && (
                 <div className={styles.confirm}>
-                  <div
+                  <button
+                    type="button"
                     className={styles.confirm__header}
                     onClick={() => setIsMyInfoOpen(prev => !prev)}
                   >
@@ -191,7 +189,7 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
                       My information
                     </p>
                     <ArrowOpen isArrowOpen={isMyInfoOpen} />
-                  </div>
+                  </button>
                   {isMyInfoOpen && (
                     <MyInformationFields
                       onChange={handleChange}
@@ -200,7 +198,8 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
                     />
                   )}
 
-                  <div
+                  <button
+                    type="button"
                     className={styles.confirm__header}
                     onClick={() => setIsDeliveryOpen(prev => !prev)}
                   >
@@ -208,7 +207,7 @@ export const OrderModal = ({ onClose, cartItems, onOrderSuccess }: Props) => {
                       Delivery information
                     </p>
                     <ArrowOpen isArrowOpen={isDeliveryOpen} />
-                  </div>
+                  </button>
                   {isDeliveryOpen && (
                     <DeliveryInformationFields
                       onChange={handleChange}
