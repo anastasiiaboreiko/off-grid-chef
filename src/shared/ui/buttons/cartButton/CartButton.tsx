@@ -1,15 +1,15 @@
 import styles from './CartButton.module.scss';
 
 type Props = {
-  isOpen: () => void;
+  onOpen: () => void;
 }
 
-export const CartButton = ({ isOpen }: Props) => {
+export const CartButton = ({ onOpen }: Props) => {
   return (
     <button
       type="button"
       className={styles.cartButton}
-      onClick={isOpen}
+      onClick={onOpen}
     >
       <span className={styles.cartButton__icon} />
     </button>
